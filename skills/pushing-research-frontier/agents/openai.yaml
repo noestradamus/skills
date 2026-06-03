@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pushing Research Frontier"
+  short_description: "Run rigorous frontier research programs"
+  default_prompt: "Use $pushing-research-frontier to design a research plan for surpassing the strongest current baseline."
