@@ -6,6 +6,7 @@ Reusable skills for AI-agent research workflows, engineering practices, and pers
 
 | Skill | Purpose |
 | --- | --- |
+| [`paradigm-forge`](skills/paradigm-forge/) | Design ambitious, original AI project directions with concrete discovery mechanisms and human judgment. |
 | [`pushing-research-frontier`](skills/pushing-research-frontier/) | Plan, execute, and evaluate research intended to surpass the strongest current method. |
 
 ## Structure
@@ -29,16 +30,18 @@ Copy a skill into your personal Codex skills directory:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R skills/pushing-research-frontier ~/.codex/skills/
+cp -R skills/<skill-name> ~/.codex/skills/
 ```
 
 Start a new Codex session if the skill is not discovered immediately.
 
 ## Usage
 
-Invoke the first skill explicitly with:
+Invoke a skill explicitly with:
 
 ```text
+Use $paradigm-forge to design an original AI project direction with a concrete discovery loop.
+
 Use $pushing-research-frontier to design a research plan for surpassing the strongest current baseline.
 ```
 

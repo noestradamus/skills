@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paradigm Forge"
+  short_description: "Forge ambitious, original AI project directions"
+  default_prompt: "Use $paradigm-forge to design an original AI project direction with a concrete mechanism, discovery loop, role for human taste, and first prototype."
