@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refactor with 5S"
+  short_description: "Refactor code safely with Japanese 5S"
+  default_prompt: "Use $refactor-with-5s to audit and refactor this codebase without changing intended behavior."
