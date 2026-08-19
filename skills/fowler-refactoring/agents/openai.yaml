@@ -1,4 +1,4 @@
 interface:
   display_name: "Fowler Refactoring"
-  short_description: "Refactor behavior safely in small verified steps"
-  default_prompt: "Use $fowler-refactoring to improve this code's internal design through small, verified, behavior-preserving transformations."
+  short_description: "Refactor code safely in verified steps"
+  default_prompt: "Use $fowler-refactoring to improve or systematically clean this code through small, verified, behavior-preserving transformations."
