@@ -30,7 +30,7 @@ Keep the code in a working state as often as practical. Use frequent tests or eq
 
 ### Wear one hat at a time
 
-Separate the refactoring hat from the adding-function hat. While refactoring, keep behavior stable and treat a newly failing test as evidence of a mistake or an invalid baseline assumption. When adding or correcting behavior, label that work separately and use tests appropriate to the changed contract.
+Use Kent Beck's two-hats metaphor as presented by Fowler. Separate the refactoring hat from the adding-function hat. While refactoring, keep behavior stable and treat a newly failing test as evidence of a mistake or an invalid baseline assumption. When adding or correcting behavior, label that work separately and use tests appropriate to the changed contract.
 
 Switch hats when necessary, but establish an explicit verification boundary between them.
 
@@ -72,6 +72,7 @@ Do not attribute the following rules specifically to Fowler. Apply them to make 
 - Stop or reduce scope when verification cannot support a credible behavior-preservation claim.
 - Prefer repository-native architecture and language idioms over a universal design prescription.
 - Report suspected defects separately instead of silently correcting them during structural cleanup.
+- Use Recovery mode, multi-candidate red-tag ledgers, proportional standardization and sustainment, and evidence-backed acceptance states as operational governance extensions rather than Fowler-attributed principles.
 
 ## Use terminology carefully
 

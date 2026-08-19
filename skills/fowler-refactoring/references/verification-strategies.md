@@ -11,7 +11,7 @@ Build evidence that is proportionate to the change. Do not treat any single chec
 - [Characterize legacy behavior](#characterize-legacy-behavior)
 - [Verify common transformation risks](#verify-common-transformation-risks)
 - [Handle performance-sensitive code](#handle-performance-sensitive-code)
-- [Handle failing baselines](#handle-failing-baselines)
+- [Use recovery mode for failing baselines](#use-recovery-mode-for-failing-baselines)
 - [Review the final diff](#review-the-final-diff)
 - [Report evidence and residual risk](#report-evidence-and-residual-risk)
 
@@ -170,7 +170,9 @@ Treat optimization as a separate behavior or quality change unless the task mere
 
 When no representative measurement is available, do not perform optimization-driven restructuring. Restrict the task to clarity changes that do not plausibly alter performance, or request authorization to establish a benchmark first.
 
-## Handle failing baselines
+## Use recovery mode for failing baselines
+
+Enter Recovery mode when relevant baseline checks already fail or are unstable. State the mode explicitly; it narrows the proof strategy and does not authorize repairing unrelated failures.
 
 - Re-run the identical command after the refactor and compare failing cases, diagnostics, and counts.
 - Classify a failure as pre-existing only when baseline evidence supports that classification.
@@ -178,6 +180,7 @@ When no representative measurement is available, do not perform optimization-dri
 - Narrow the change or add focused evidence when a broad failing suite cannot distinguish outcomes.
 - Do not repair unrelated baseline failures inside the refactor.
 - Stop and report residual risk when the baseline is too unstable to support a credible comparison.
+- Prefer characterization around the target and unaffected comparison paths that still run reliably. Keep the scope small enough that introduced failures remain attributable to one coherent transformation.
 
 ## Review the final diff
 
