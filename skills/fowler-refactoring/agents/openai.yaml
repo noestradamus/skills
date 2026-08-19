@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fowler Refactoring"
+  short_description: "Refactor existing code without changing behavior"
+  default_prompt: "Use $fowler-refactoring to improve this code through small, verified, behavior-preserving transformations."
