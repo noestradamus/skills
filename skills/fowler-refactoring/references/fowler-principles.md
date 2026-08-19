@@ -1,58 +1,95 @@
-# Fowler Principles and Attribution
+# Fowler Principles and Source Boundary
 
-Use this reference to ground decisions and keep attribution precise. Paraphrase the sources; do not copy catalog prose or mechanics into output.
+## Table of contents
 
-## Fowler-derived foundation
+- [Use the primary-source boundary](#use-the-primary-source-boundary)
+- [Apply the Fowler-derived foundation](#apply-the-fowler-derived-foundation)
+- [Apply additional engineering safeguards](#apply-additional-engineering-safeguards)
+- [Use terminology carefully](#use-terminology-carefully)
+- [Consult the primary sources](#consult-the-primary-sources)
 
-1. **Preserve observable behavior.** Treat refactoring as changing internal structure to make code easier to understand and modify without changing what observers can detect. Fowler deliberately leaves the exact boundary informal, so define the contract-relevant observables for the repository.
-2. **Compose small transformations.** Keep the program working while a sequence of individually small refactorings produces a larger design improvement.
-3. **Verify continuously.** Work from a stable, tested state and run tests after small changes so a regression points to a narrow step.
-4. **Keep the two hats separate.** Distinguish refactoring from adding function. Switch as often as needed, but do not mix both intentions in one change. Fowler credits the metaphor to Kent Beck.
-5. **Investigate smells.** Use a smell as an inexpensive signal of a possible deeper design problem. Inspect context before deciding that change is warranted; a smell is not proof of a defect. Fowler credits the term to Kent Beck.
-6. **Refactor for an economic reason.** Improve structure when it reduces the cost of understanding or a likely change. Do not chase abstract cleanliness detached from use.
-7. **Improve gradually.** Leave touched code clearer without trying to perfect an entire codebase in one pass or disappearing into a cleanup excursion.
-8. **Keep optimization distinct.** Similar code transformations may support optimization, but optimization intentionally changes performance. Profile before and after it rather than presenting it as behavior-preserving refactoring.
-9. **Protect published interfaces.** Changing all reachable callers can be part of a refactoring, but a published interface is observable and may have consumers that cannot be updated together.
-10. **Apply concepts across languages.** Adapt the transformations to the language and project rather than copying the JavaScript form of the second-edition examples.
+## Use the primary-source boundary
 
-## Additional autonomous-agent safeguards
+Base this skill primarily on Martin Fowler's *Refactoring* material and the official catalog at `refactoring.com`. Paraphrase concepts and mechanics; do not reproduce catalog prose or book text.
 
-The following requirements extend Fowler's foundation for safe repository operation. Do not attribute them specifically to Fowler unless a primary source is added:
+Attribute only the principles in the next section to Fowler's published material. Treat the safeguards in the following section as this skill's modern operational extensions, even when they are compatible with Fowler's approach.
 
-- Inspect local agent instructions, repository status, and unrelated modifications before editing.
-- Record exact baseline commands and distinguish pre-existing failures.
-- Gate public APIs, schemas, serialized formats, protocols, security boundaries, concurrency semantics, and contractual timing behind explicit user authorization.
-- Use characterization tests when current legacy behavior lacks focused coverage.
-- Exclude generated, vendored, migration, snapshot, and third-party code by default.
-- Require representative measurement before optimization-driven restructuring.
-- Preserve toolchain, dependency, configuration, and lockfile state unless a change is necessary and authorized.
-- Stop when behavior-preservation evidence is unavailable; report residual risk instead of overstating confidence.
-- Preserve suspected bugs during structural work and escalate security, privacy, corruption, or data-loss concerns separately.
-- Capture the relevant pre-edit diff and keep characterization tests within the user's authorized file scope.
-- Reject speculative abstraction unless a demonstrated present need justifies its cost.
+## Apply the Fowler-derived foundation
 
-## Primary sources
+### Preserve observable behavior
 
-- [Refactoring.com: definition, small transformations, language applicability, and official catalog](https://refactoring.com/)
-- [Definition of Refactoring: noun and verb definitions](https://martinfowler.com/bliki/DefinitionOfRefactoring.html)
-- [Refactoring Boundary: the deliberately informal observable-behavior boundary](https://martinfowler.com/bliki/RefactoringBoundary.html)
-- [Catalog of Refactorings: current names, aliases, and categories](https://refactoring.com/catalog/)
-- [Code Smell: smells as surface indications that require deeper judgment](https://martinfowler.com/bliki/CodeSmell.html)
-- [Workflows of Refactoring: the two hats, stable tests, gradual improvement, and economic motivation](https://martinfowler.com/articles/workflowsOfRefactoring/)
-- [Is Changing Interfaces Refactoring?: caller updates and behavior preservation](https://martinfowler.com/bliki/IsChangingInterfacesRefactoring.html)
-- [Published Interface: why external consumers require greater care](https://martinfowler.com/bliki/PublishedInterface.html)
-- [Is Optimization Refactoring?: profile before and after optimization](https://martinfowler.com/bliki/IsOptimizationRefactoring.html)
-- [Opportunistic Refactoring: small improvements and avoiding rabbit holes](https://martinfowler.com/bliki/OpportunisticRefactoring.html)
-- [Yagni: avoiding complexity for presumptive future needs](https://martinfowler.com/bliki/Yagni.html)
-- [Refactoring Malapropism: refactoring versus general restructuring](https://martinfowler.com/bliki/RefactoringMalapropism.html)
-- [Refactoring book page: controlled, small, behavior-preserving transformations](https://martinfowler.com/books/refactoring.html)
+Treat refactoring as restructuring that improves understandability and ease of modification while keeping observable behavior unchanged. Do not use “refactoring” as a synonym for rewriting, feature development, or bug fixing.
 
-## Attribution rules
+Define “observable” from the affected system's real consumers. Include published interfaces and any behavior callers can detect, not only returned values.
 
-- Say “Fowler defines,” “Fowler describes,” or “Fowler's catalog names” only when a linked primary source supports the claim.
-- Credit the two-hats metaphor and the term code smell to Kent Beck when naming their origins; say Fowler documents and uses them.
-- Credit YAGNI to Extreme Programming and, when discussing the phrase's origin, to Kent Beck and Chet Hendrickson; Fowler documents the principle.
-- Use current second-edition catalog names where possible and mention older names only as aliases.
-- Label repository safety, compatibility, characterization, benchmarking, and authorization rules as agent safeguards or modern adaptations.
-- Describe rollback boundaries as an agent safeguard; Fowler supports small steps, but “reversible” is not a catalog promise.
-- Prefer original operational summaries. Link to the catalog instead of reproducing its entries.
+### Move through small transformations
+
+Break a design change into behavior-preserving steps small enough to understand, verify, and reverse independently. Prefer a sequence of modest edits over a single large rewrite.
+
+Keep the code in a working state as often as practical. Use frequent tests or equivalent checks to reveal mistakes close to the step that introduced them.
+
+### Wear one hat at a time
+
+Separate the refactoring hat from the adding-function hat. While refactoring, keep behavior stable and treat a newly failing test as evidence of a mistake or an invalid baseline assumption. When adding or correcting behavior, label that work separately and use tests appropriate to the changed contract.
+
+Switch hats when necessary, but establish an explicit verification boundary between them.
+
+### Use smells as investigation prompts
+
+Use smells to locate areas worth examining, then confirm the local design cost and context before changing code. Do not convert a smell list into an automatic rewrite checklist.
+
+Treat this “prompt, not verdict” formulation as the skill's operational interpretation of Fowler's smell-oriented diagnosis, not as a quotation.
+
+### Refactor for economic and comprehension value
+
+Improve code when clearer design is likely to make present or future work easier, safer, or cheaper. Avoid polishing code solely to express personal taste.
+
+Move newly acquired understanding into names, functions, responsibilities, and boundaries so the next reader does not need to reconstruct the same mental model.
+
+### Prefer gradual improvement
+
+Leave touched code easier to understand and change, but do not attempt to perfect an entire codebase in one pass. Keep scope connected to current evidence and expected value.
+
+### Use tools without depending on them
+
+Use reliable IDE or language-server refactorings when available. Still inspect the result and verify behavior. When automation is unavailable, rely on smaller manual steps and more frequent checks.
+
+### Treat published interfaces as observable behavior
+
+Change an internal interface only when all callers can be updated safely. Treat a published interface itself as part of observable behavior; require compatibility handling or explicit authorization before changing it.
+
+## Apply additional engineering safeguards
+
+Do not attribute the following rules specifically to Fowler. Apply them to make autonomous repository work safer:
+
+- Record a command-level baseline and distinguish pre-existing failures from regressions.
+- Inspect version-control status and preserve unrelated uncommitted work.
+- Use characterization tests to capture legacy behavior when focused tests are absent and the behavior can be observed safely.
+- Protect schemas, persistence, serialization, protocols, authentication, authorization, concurrency, binary compatibility, and operational side effects behind explicit approval gates.
+- Protect generated, vendored, migration, snapshot, lock, and third-party files from incidental edits.
+- Reuse repository-provided build and verification commands rather than installing tools or changing configuration by default.
+- Require representative measurements before optimization-driven restructuring.
+- Stop or reduce scope when verification cannot support a credible behavior-preservation claim.
+- Prefer repository-native architecture and language idioms over a universal design prescription.
+- Report suspected defects separately instead of silently correcting them during structural cleanup.
+
+## Use terminology carefully
+
+Use the current second-edition catalog name when practical and mention a familiar alias only for navigation, such as “Extract Function (often called Extract Method).”
+
+Call a change a refactoring only when its observable contract remains stable. Call an authorized contract change a feature, bug fix, migration, compatibility change, or optimization as appropriate.
+
+Avoid claiming that Fowler requires a specific test framework, object-oriented architecture, commit strategy, code metric, or tool. Adapt the process to the repository's language and conventions.
+
+## Consult the primary sources
+
+Use these primary sources to verify attribution and catalog names:
+
+- [Refactoring.com home and definition](https://refactoring.com/)
+- [Official catalog of refactorings](https://refactoring.com/catalog/)
+- [Martin Fowler's Refactoring book page](https://martinfowler.com/books/refactoring.html)
+- [Workflows of Refactoring and the two-hats discussion](https://martinfowler.com/articles/workflowsOfRefactoring/)
+- [Preparatory Refactoring example](https://martinfowler.com/articles/preparatory-refactoring-example.html)
+- [Changing interfaces and published-interface caution](https://martinfowler.com/bliki/IsChangingInterfacesRefactoring.html)
+
+When a proposed attribution is not supported by these or another primary Fowler source, present it as an additional safeguard or omit the attribution.

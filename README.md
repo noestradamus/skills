@@ -6,7 +6,7 @@ Reusable skills for AI-agent research workflows, engineering practices, and pers
 
 | Skill | Purpose |
 | --- | --- |
-| [`fowler-refactoring`](skills/fowler-refactoring/) | Refactor existing code in small, Fowler-grounded steps while preserving observable behavior. |
+| [`fowler-refactoring`](skills/fowler-refactoring/) | Refactor existing code through small Fowler-style transformations while preserving observable behavior. |
 | [`paradigm-forge`](skills/paradigm-forge/) | Design ambitious, original AI project directions with concrete discovery mechanisms and human judgment. |
 | [`pushing-research-frontier`](skills/pushing-research-frontier/) | Plan, execute, and evaluate research intended to surpass the strongest current method. |
 | [`refactor-with-5s`](skills/refactor-with-5s/) | Refactor existing code safely using the Japanese 5S methodology. |
@@ -42,7 +42,7 @@ Start a new Codex session if the skill is not discovered immediately.
 Invoke a skill explicitly with:
 
 ```text
-Use $fowler-refactoring to improve this module's design without changing observable behavior.
+Use $fowler-refactoring to improve this module through small behavior-preserving transformations.
 
 Use $paradigm-forge to design an original AI project direction with a concrete discovery loop.
 

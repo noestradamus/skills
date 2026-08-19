@@ -1,115 +1,127 @@
 ---
 name: fowler-refactoring
-description: Refactor existing code in small, behavior-preserving steps when a user asks to clean up, restructure, simplify, or improve maintainability; also separate the refactoring phase when a request mixes cleanup with a feature or fix.
+description: Refactor existing code safely through small, behavior-preserving transformations grounded in Martin Fowler's refactoring principles. Use when an autonomous coding agent must improve names, structure, responsibilities, duplication, conditionals, data flow, coupling, or extensibility in a real repository without changing observable behavior, including requests that mix cleanup with a bug fix or new feature. Do not use for greenfield design, feature-first rewrites, dependency upgrades, migrations, or optimization without a measured baseline.
 ---
 
 # Fowler Refactoring
 
-Improve internal design without changing externally observable behavior. Use Fowler's refactoring principles as the conceptual foundation and apply the repository safeguards below to autonomous work.
+## Purpose
 
-## Keep the boundary explicit
+Improve the internal design of existing code without changing its externally observable behavior. Apply a sequence of small, reversible transformations; verify after meaningful steps; and stop at boundaries that require authorization.
 
-- Define contract-relevant observable behavior before editing. Include public APIs, schemas, serialized forms, outputs, side effects and their order, exceptions, compatibility, and any relied-upon timing or concurrency semantics.
-- Wear one hat at a time. Separate structural refactoring from feature additions, bug fixes, optimizations, dependency upgrades, migrations, and other behavior changes.
-- Partition a mixed request into independently verified phases. Keep the refactoring phase behavior-preserving even when the user also authorizes a later behavior change.
-- Treat a suspected bug as current behavior until the user authorizes a fix. Report it separately; never conceal a fix inside cleanup.
-- Prefer the smallest transformation that resolves the evidenced design problem. Reject speculative abstraction and unnecessary generality.
+Read [references/fowler-principles.md](references/fowler-principles.md) before classifying the work. Read only the relevant entries in [references/refactoring-catalog.md](references/refactoring-catalog.md) when selecting transformations. Read [references/verification-strategies.md](references/verification-strategies.md) before baselining legacy code, touching high-risk logic, or performing final verification.
 
-Read [Fowler principles and attribution](references/fowler-principles.md) before attributing guidance to Fowler or deciding whether a smell justifies work. Read the relevant entries in the [operational catalog](references/refactoring-catalog.md) when selecting or applying a transformation. Read [verification strategies](references/verification-strategies.md) when defining invariants, working without tests, or handling API, stateful, concurrent, timing-sensitive, or performance-sensitive code.
+## Operating contract
 
-## 1. Establish scope
+- Apply Fowler's two-hats discipline: wear the refactoring hat or the behavior-change hat, never both in the same step. Keep behavior-preserving refactoring separate from feature additions, bug fixes, dependency upgrades, migrations, and optimizations.
+- Preserve observable contracts unless the user explicitly authorizes a separate behavior change. Include public APIs, schemas, serialized forms, persistence, protocols, side effects, exception behavior, ordering, timing-sensitive behavior, concurrency, security boundaries, and compatibility when relevant.
+- Treat code smells as prompts to investigate, not commands to change code.
+- Choose the smallest coherent refactoring that addresses demonstrated design friction. Reject speculative abstractions and cleanup without a concrete payoff.
+- Work in small rollback units. Keep the repository runnable and re-run focused checks frequently.
+- Reuse repository-provided commands, language idioms, and architectural conventions. Do not impose a universal framework or folder structure.
+- Preserve unrelated work. Never reset, overwrite, reformat, stage, or commit changes outside the agreed scope.
+- Avoid generated, vendored, migration, snapshot, lock, and third-party files unless the user explicitly includes them. Change a generator rather than generated output when possible.
+- Do not install dependencies, alter configuration, update lockfiles, push, merge, deploy, or publish unless necessary and authorized.
+- Measure representative performance before restructuring for speed. Do not call an unmeasured cleanup an optimization.
 
-1. Read repository-level and applicable directory-level agent instructions.
-2. Restate the requested outcome, permitted files, exclusions, and authorization boundary.
-3. Inspect and record repository status plus relevant target diffs before editing. Treat unrelated modifications as user-owned; do not overwrite, reformat, stage, revert, stash, reset, or check them out to manufacture a clean baseline.
-4. Trace the target's callers, callees, tests, data contracts, public interfaces, and runtime boundaries. Identify generated, vendored, migration, snapshot, and third-party files and exclude them unless explicitly requested.
-5. Record the observable invariants that must remain unchanged and the evidence available for each.
-6. Ask a concise question only when unresolved ambiguity could materially change behavior or scope. Otherwise make the narrowest safe assumption and state it.
+## Workflow
 
-Classify risk before planning:
+### 1. Establish scope
 
-- **Low:** local private rename, extraction, or simplification with focused tests.
-- **Medium:** cross-file movement, shared data flow, duplicated logic, or indirect side effects.
-- **High:** public API, persistence, serialization, protocol, security, concurrency, performance, contractual timing, or poorly understood legacy behavior.
+1. Read repository-level and directory-level instructions, including agent guidance, contribution rules, build files, CI workflows, and package-specific conventions.
+2. Restate the requested outcome, permitted files, explicit exclusions, and whether the task is refactoring-only or mixed with behavior work.
+3. Inspect version-control status and the relevant diff. Record unrelated existing modifications and keep them untouched; do not reset, overwrite, reformat, stage, or commit them.
+4. Trace the target's entry points, callers, implementations, tests, data flow, side effects, runtime registration, and external boundaries.
+5. Define the behavior-preservation contract for this task. Name concrete invariants rather than saying only “behavior stays the same.”
+6. Bound vague requests such as “clean up this module” to the smallest bounded problem supported by concrete evidence in the requested area. State the chosen scope and non-goals before broad edits.
+7. Ask one concise clarification question only when a missing answer could materially change behavior, public compatibility, or permitted scope. Otherwise proceed with explicit assumptions.
 
-Present a bounded plan before editing a vague cleanup request or medium-, high-, or large-scope work. Proceed directly only for small, specifically targeted, clearly authorized work.
+### 2. Establish a baseline
 
-## 2. Establish a baseline
+1. Discover verification commands from repository configuration, CI, documentation, and existing scripts. Do not guess a package manager or test framework.
+2. Run the narrowest relevant tests first, followed by applicable type checks, linters, builds, static analysis, or benchmarks already supplied by the project.
+3. Record each command, result, environment-sensitive limitation, and pre-existing failure before editing.
+4. Re-run an ambiguous failure when needed to determine whether it is stable and predates the refactor.
+5. When useful tests are missing, add the smallest focused characterization tests that capture current externally visible outcomes and side effects. Do not “correct” surprising behavior inside those tests.
+6. Treat compilation or type checking as supporting evidence, never as sole proof of behavior preservation.
 
-1. Discover project-provided commands from local instructions, manifests, task runners, CI configuration, and nearby documentation. Reuse them instead of inventing a toolchain.
-2. Run the narrowest relevant tests first, then the relevant type checks, linters, builds, or static analysis practical before editing.
-3. Record each command, result, and relevant environment detail. Classify pre-existing failures as relevant, demonstrably unrelated, flaky, environmental, or unclassified.
-4. Do not install dependencies, change configuration, or update lockfiles unless necessary and authorized.
-5. Stop on relevant or unclassified baseline failures. Proceed past a demonstrably unrelated, flaky, or environmental failure only when focused evidence remains adequate, and disclose the limitation.
-6. If coverage is missing, add focused characterization tests only when they can capture current behavior without asserting a desired fix. Run available checks first, then add the characterization test as the first codebase change against otherwise unchanged production code. Keep the test within the permitted file scope or obtain confirmation before expanding it. If behavior cannot be established safely, stop and explain the risk.
-7. Do not treat compilation, type checking, snapshots alone, or a green unrelated suite as proof of behavior preservation.
+Use [references/verification-strategies.md](references/verification-strategies.md) to select a proportionate evidence set.
 
-## 3. Diagnose before changing
+### 3. Diagnose before changing
 
-For every proposed change, identify:
+1. Identify concrete maintainability problems and cite exact files, symbols, call paths, or repeated logic.
+2. Explain the local cost of each problem: difficult reasoning, duplicated change effort, unclear ownership, coupling, unsafe extension, or hidden side effects.
+3. Distinguish structural problems from personal style preferences and repository-consistent patterns.
+4. Map each supported problem to the smallest suitable technique in [references/refactoring-catalog.md](references/refactoring-catalog.md).
+5. Consolidate duplication only after proving the cases have the same semantics and compatible change reasons. Defer candidates whose benefit, semantics, usage, or safety cannot be established.
+6. Avoid broad formatting, mass renaming, folder movement, or architectural rewriting unrelated to the requested outcome.
 
-- the concrete code evidence;
-- the maintenance or changeability cost in this repository;
-- the smallest suitable transformation;
-- the behavior and boundary that could be disturbed.
+### 4. Plan small transformations
 
-Treat smells as prompts to investigate, not automatic defects. Distinguish design friction from personal style. Avoid broad formatting, global renaming, dependency churn, or architectural rewrites that do not serve the stated goal. Challenge a requested abstraction when its added indirection exceeds the demonstrated need.
+Create an ordered plan of independently understandable steps. For every step, record:
 
-Before consolidating duplication, prove that the fragments represent the same domain concept and share a reason to change; superficial similarity alone does not justify a shared abstraction.
+- **Problem and evidence** — what design friction the step addresses.
+- **Transformation** — the exact structural change.
+- **Invariant** — what must remain observably unchanged.
+- **Verification** — the focused check that can catch a mistake.
+- **Risk and rollback** — `low`, `medium`, or `high`, plus the edit or commit boundary to revert.
 
-## 4. Plan small transformations
+Classify local private renames and simple extractions as low risk only when all references and effects are known. Classify cross-module movement, duplication removal, and side-effectful conditional changes as at least medium risk. Classify published APIs, schemas, protocols, persistence, authentication or authorization, concurrency, reflection, binary compatibility, and performance-sensitive paths as high risk.
 
-Order coherent, reversible steps. For each step, state:
+Present the plan before editing when the work is large, cross-cutting, high risk, or requires a protected boundary. For a small, clearly authorized refactor, proceed directly while keeping the same step record internally.
 
-| Field | Required content |
-| --- | --- |
-| Problem | Specific evidence and why it impedes the requested change or understanding |
-| Transformation | One named refactoring or narrowly described design adjustment |
-| Invariant | Observable behavior that must remain unchanged |
-| Verification | Focused check that can detect a mistake in this step |
-| Risk and rollback | Low, medium, or high; files affected; last known-good boundary |
-
-Prefer steps that leave the code runnable and reviewable. Split a step again when its diff cannot be explained as one structural transformation.
-
-## 5. Refactor incrementally
+### 5. Refactor incrementally
 
 1. Apply one coherent transformation at a time.
-2. Preserve local style, architecture, language idioms, and framework conventions unless they are the explicit target.
-3. Keep compatibility shims when an authorized internal move would otherwise disturb callers; remove them only with explicit API authorization.
-4. Run the focused verification after each meaningful step. If it fails, inspect or roll back only that step before continuing.
-5. Keep structural edits separate from behavior edits in the diff and, when practical, in commits.
-6. Avoid incidental formatting and file churn. Do not regenerate snapshots or generated artifacts merely to make failures disappear.
-7. Reassess scope when a transformation reveals wider coupling. Do not let discovery silently expand the task.
-8. If a commit or publication is separately authorized, stage only task-owned files or hunks and recheck that pre-existing work is excluded.
+2. Keep structural edits separate from behavior edits. Finish and verify the refactoring hat before starting any separately authorized feature or bug-fix hat.
+3. Preserve evaluation order, short-circuiting, mutation count, I/O, resource lifetime, exceptions, asynchronous behavior, and cleanup semantics unless proved irrelevant.
+4. Re-run the narrowest useful verification after each meaningful step. Expand verification as the affected surface grows.
+5. Preserve existing style and architecture unless changing that convention is the explicit goal.
+6. Prefer native language and framework idioms. Use automated refactoring tools when available, but inspect their complete diff and verify the result.
+7. Avoid compatibility shims, new abstractions, or generic utility layers unless current evidence justifies them.
+8. Do not hide behavior changes inside renames, extraction, movement, deduplication, or “cleanup.”
+9. Keep churn proportional. Do not reformat untouched code or modify protected artifacts incidentally.
 
-## 6. Stop or escalate safely
+### 6. Handle discoveries safely
 
-| Discovery | Required response |
-| --- | --- |
-| Apparent bug | Preserve it, record evidence, and request separate authorization to fix it. |
-| Potential security, privacy, corruption, or data-loss defect | Stop immediately, preserve non-sensitive evidence, and alert the user; do not hide it inside the refactor. |
-| Unclear current behavior | Characterize it with a focused test or ask the user before editing. |
-| Public API, schema, protocol, security, concurrency, or visible behavior must change | Stop that path and obtain explicit authorization. |
-| Baseline check fails | Determine and record whether it predates the refactor; do not claim a fully green baseline. |
-| Verification becomes unavailable or inconclusive | Stop at the last verified boundary and explain residual risk. |
-| Optimization motivates restructuring without representative measurements | Measure first or decline the optimization-driven refactor. |
-| Relied-upon performance lacks representative measurements | Establish a benchmark or stop. If performance is not contractual, make no performance claim and disclose it as unverified rather than treating it as a preservation blocker. |
-| Proposed abstraction has no demonstrated use | Prefer the simpler local design and explain why. |
-| Unrelated work overlaps the target | Preserve it; isolate files and hunks without stash/reset/checkout, or ask the user when safe isolation is impossible. |
+Stop, separate, or escalate under these rules:
 
-## 7. Verify and report
+- **Suspected bug:** Preserve the current behavior during the refactor. Do not silently fix it. Report the defect separately with evidence; fix it only under a separately authorized behavior-change hat.
+- **Unclear current behavior:** Add a focused characterization test when safe. Otherwise ask for the missing contract or stop with the unresolved risk.
+- **Protected boundary:** Obtain explicit authorization before changing a published API, persistence schema, serialization format, protocol, security boundary, concurrency semantics, or externally visible behavior.
+- **Failing baseline:** Compare the same command before and after. Do not attribute a pre-existing failure to the refactor or use it to excuse a new regression.
+- **Impossible verification:** Stop expanding the change. Explain what could not be verified, what evidence exists, and what residual risk remains.
+- **Unnecessary abstraction:** Challenge the requested design with concrete complexity, coupling, or maintenance costs. Prefer the smaller change.
+- **Unmeasured performance path:** Measure before optimization. Preserve the current structure or first establish a representative benchmark; do not optimize by intuition alone.
+- **Overlapping unrelated edits:** Avoid the overlap or isolate only the intended hunks. Do not discard or rewrite another person's work.
 
-1. Run focused checks for the final step, then the broadest relevant verification practical for the repository.
-2. Compare final results with the recorded baseline, including pre-existing failures.
-3. Inspect the complete diff and status for accidental behavior changes, unrelated edits, dead code, stale comments, missed callers, exposed APIs, and excessive churn.
-4. Confirm that each planned invariant has evidence. State gaps as risks rather than assuming success.
+### 7. Verify and report
+
+1. Run focused tests for the changed behavior, then the broadest relevant verification practical for the repository.
+2. Compare every result with the recorded baseline and separate regressions from pre-existing failures.
+3. Review the full diff for accidental behavior changes, unrelated edits, dead code, stale comments, duplicate compatibility paths, protected artifacts, and excessive churn.
+4. Confirm that the refactor removed or clarified the identified design problem rather than moving it behind a less visible abstraction.
 5. Report:
-   - design problems addressed and concrete evidence;
-   - refactorings performed;
+   - scope, assumptions, and preserved invariants;
+   - concrete design problems addressed;
+   - transformations performed and why they were chosen;
    - behavior-preservation evidence;
    - exact tests and checks run with results;
    - pre-existing and remaining failures;
-   - files intentionally changed;
-   - assumptions, residual risks, and separately recommended follow-up.
+   - risks, deferred candidates, and recommended follow-up work;
+   - any separately authorized behavior changes, clearly labeled as non-refactoring work.
+6. Distinguish implementation completion from automated verification, manual acceptance, merge approval, deployment, and production approval.
+7. Avoid claiming absolute proof. State the evidence and residual uncertainty proportionately.
 
-Call work a refactor only when the available evidence supports preserved observable behavior. Otherwise describe it as restructuring and disclose the unverified boundary.
+## Completion gate
+
+Declare the refactor complete only when all applicable conditions hold:
+
+- Keep the agreed observable contract unchanged, or separate every explicitly authorized behavior change.
+- Introduce no new failure relative to the recorded baseline.
+- Address each changed area with concrete design evidence rather than taste alone.
+- Keep each transformation reviewable and reversible.
+- Preserve unrelated modifications and protected artifacts.
+- Leave names, responsibilities, abstractions, data flow, or dependency boundaries clearer than before.
+- Run and report the strongest practical verification for the affected surface.
+- Record unresolved risks instead of concealing them.
