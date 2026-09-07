@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mobile App Design"
+  short_description: "Design and build distinctive native mobile apps"
+  default_prompt: "Use $mobile-app-design to design and implement this Expo/React Native experience for iOS and Android."
