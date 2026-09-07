@@ -1,6 +1,6 @@
 # Agent Skills
 
-Reusable skills for AI-agent research workflows, engineering practices, and personal automation.
+Reusable skills for AI-agent research workflows, engineering practices, personal automation, and focused learning.
 
 ## Available Skills
 
@@ -9,6 +9,7 @@ Reusable skills for AI-agent research workflows, engineering practices, and pers
 | [`fowler-refactoring`](skills/fowler-refactoring/) | Refactor or systematically clean existing code through small verified transformations, evidence-backed dispositions, and proportionate guardrails. |
 | [`paradigm-forge`](skills/paradigm-forge/) | Design ambitious, original AI project directions with concrete discovery mechanisms and human judgment. |
 | [`pushing-research-frontier`](skills/pushing-research-frontier/) | Plan, execute, and evaluate research intended to surpass the strongest current method. |
+| [`top1percent`](skills/top1percent/) | Learn a topic or practical skill in about ten minutes through source-checked explanations, examples, a short exercise, and a path toward mastery. |
 
 ## Structure
 
@@ -46,6 +47,8 @@ Use $fowler-refactoring to improve a module or run a systematic code-hygiene cam
 Use $paradigm-forge to design an original AI project direction with a concrete discovery loop.
 
 Use $pushing-research-frontier to design a research plan for surpassing the strongest current baseline.
+
+Use $top1percent to teach me evolution and natural selection in about ten minutes, starting from zero knowledge and ending with a path toward mastery.
 ```
 
 ## Adding Skills
