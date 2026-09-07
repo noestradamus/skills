@@ -7,6 +7,7 @@ Reusable skills for AI-agent research workflows, engineering practices, and pers
 | Skill | Purpose |
 | --- | --- |
 | [`fowler-refactoring`](skills/fowler-refactoring/) | Refactor or systematically clean existing code through small verified transformations, evidence-backed dispositions, and proportionate guardrails. |
+| [`mobile-app-design`](skills/mobile-app-design/) | Design, implement, review, and polish Expo/React Native interfaces with distinct iOS and Android behavior, purposeful motion, and evidence-based verification. |
 | [`paradigm-forge`](skills/paradigm-forge/) | Design ambitious, original AI project directions with concrete discovery mechanisms and human judgment. |
 | [`pushing-research-frontier`](skills/pushing-research-frontier/) | Plan, execute, and evaluate research intended to surpass the strongest current method. |
 
@@ -42,6 +43,8 @@ Invoke a skill explicitly with:
 
 ```text
 Use $fowler-refactoring to improve a module or run a systematic code-hygiene campaign without changing observable behavior.
+
+Use $mobile-app-design to design and implement an Expo/React Native experience for iOS and Android.
 
 Use $paradigm-forge to design an original AI project direction with a concrete discovery loop.
 
