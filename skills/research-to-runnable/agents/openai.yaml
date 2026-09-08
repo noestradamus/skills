@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research to Runnable"
+  short_description: "Turn computational research into one useful pilot"
+  default_prompt: "Use $research-to-runnable to turn this method or computational problem into one useful pilot in my project."
