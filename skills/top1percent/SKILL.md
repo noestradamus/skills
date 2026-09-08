@@ -1,6 +1,6 @@
 ---
 name: top1percent
-description: "Create a focused, source-checked learning experience on a user-specified topic or practical skill that takes about ten minutes to complete, with examples, a brief application or self-check, and a path toward mastery. Use for Top 1%, top1percent, ten-minute lessons, or requests to quickly develop unusually useful understanding."
+description: "Create a focused, source-checked learning experience on a user-specified topic or practical skill that takes about ten minutes to complete, with at least one illustration, examples, a brief application or self-check, and a path toward mastery. Use for Top 1%, top1percent, ten-minute lessons, or requests to quickly develop unusually useful understanding."
 ---
 
 # Top 1%
@@ -45,19 +45,35 @@ Choose teaching methods to suit the topic; combine them as needed:
 | Social | Realistic scenario, adaptable example language, contextual cues, rehearsal, signs to continue or disengage |
 | Technical or creative | Worked example, small attempt, observable feedback criteria |
 
-Use a visual, simulation, demonstration, or other medium when it materially improves understanding and the necessary capability is available. Choose the smallest useful addition and verify its behavior and labels. Keep essential teaching accessible in the text; unavailable media tools should not block a useful lesson. Do not make a custom application, generated media, or any particular tool a requirement for every topic.
-
 For physical or other consequential activities, choose an appropriate introductory exercise and include only the relevant prerequisites, constraints, and stopping cues. Avoid implying that a brief explanation establishes competence. For social situations, teach adaptable communication and respect for others' responses; do not promise universal scripts or guaranteed outcomes.
+
+## Include an illustration in every lesson
+
+Every lesson must include at least one actual, displayed illustration that explains a central idea, unless the user explicitly requests text only. Make it part of the explanation and tell the learner what to notice, compare, or predict. Decorative imagery, a plain table, ASCII art, an external link alone, unrendered code, or a promise to create a visual does not satisfy this requirement.
+
+Choose the simplest effective medium for the learning target:
+
+- A rendered diagram, timeline, flowchart, or concept map for relationships, sequences, and decisions.
+- An annotated image or sequence of frames for anatomy, technique, spatial form, and worked examples.
+- A plot or comparison graphic for quantities, patterns, and distributions.
+- An animation or short video when observing motion or a process over time improves understanding.
+- An interactive visualizer when changing inputs, making predictions, or exploring scenarios reveals the mechanism.
+
+These are options, not a checklist. One well-chosen visual is enough; do not build a custom application or add multiple media formats by default. Use relevant available capabilities and follow their instructions. Display or embed the illustration with the lesson so the learner can use it immediately.
+
+Verify the rendered result: factual accuracy, labels and arrows, legibility, and consistency with the explanation. Check controls and representative states for interactive media; check the relevant segment and duration for video. Keep essential teaching in the text and provide a concise text alternative. Source factual visual content and distinguish schematic, simulated, or illustrative material from observed evidence.
+
+If the preferred medium is unavailable, use a simpler rendered diagram or static graphic. Missing animation, video, or interactive tools is not a reason to omit the illustration. If no available capability can display any illustration, explain the specific limitation and provide the useful text portion without claiming the lesson is complete or the visual requirement met.
 
 ## Respect the ten-minute budget
 
-Count reading, watching, thinking, exercises, and reading the mastery plan together. The later practice and optional source reading are outside this budget. The learner should not have to open several links to understand the core lesson.
+Count reading, viewing the illustration, watching, interacting, thinking, exercises, and reading the mastery plan together. Shorten surrounding prose to make room for the visual; do not add it on top of an already full ten-minute lesson. The later practice and optional source reading are outside this budget. The learner should not have to open several links to understand the core lesson.
 
 A useful starting budget is about six minutes of teaching, two minutes of application, one minute of recall, and one minute reading next steps. Adapt these proportions. For an English text-led lesson, roughly 900–1,300 words can be a planning guide; reduce prose when concepts are dense or activities take longer, and adapt to the language. Do not pad simple topics or rush complex ones to hit a word count. State an approximate completion time without pretending to have measured the user's reading speed.
 
 Include a short application or self-check with feedback: a prediction, teach-back, scenario choice, rehearsal, or small task. Favor transfer and understanding over recalling labels. Let the learner attempt it before seeing the answer when practical. Include answers or evaluation criteria in the same response unless the user requests guided turn-by-turn tutoring.
 
-Use a flexible structure: learning target and opening situation; essential explanation and examples; application and feedback; mastery path. Match the user's preferred format rather than enforcing identical headings or a fixed number of sections.
+Use a flexible structure: learning target and opening situation; essential explanation, integrated illustration, and examples; application and feedback; mastery path. Match the user's preferred format rather than enforcing identical headings or a fixed number of sections.
 
 ## Always end with a path toward mastery
 
@@ -72,4 +88,4 @@ Keep this section short enough to read within the lesson. Avoid arbitrary promis
 
 ## Final editorial check
 
-Before delivering, confirm that a beginner can follow the explanation, the lesson answers the requested topic and perspective, central claims are supported, the activity tests a meaningful outcome, the whole experience plausibly fits the time budget, and the mastery path is actionable. Remove anything that does not earn its place. Preserve the lesson's substance when shortening it.
+Before delivering, confirm that a beginner can follow the explanation, the lesson answers the requested topic and perspective, central claims are supported, at least one accurate and legible illustration is actually displayed and teaches a central idea, the activity tests a meaningful outcome, the whole experience including the visual plausibly fits the time budget, and the mastery path is actionable. Honor an explicit text-only request or clearly report an unresolved display limitation rather than silently dropping the visual. Remove anything that does not earn its place. Preserve the lesson's substance when shortening it.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Top 1%"
-  short_description: "Learn what matters in ten minutes, then go deeper"
-  default_prompt: "Use $top1percent to teach me a topic in about ten minutes, starting from zero knowledge and ending with a path toward mastery."
+  short_description: "Illustrated ten-minute lessons with a path to mastery"
+  default_prompt: "Use $top1percent to teach me a topic in about ten minutes, starting from zero knowledge, including at least one illustration that explains a central idea, and ending with a path toward mastery."
