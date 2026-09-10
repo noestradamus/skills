@@ -2,6 +2,8 @@
 
 Reusable skills for AI-agent research workflows, engineering practices, personal automation, and focused learning.
 
+The six skills use the open [Agent Skills format](https://agentskills.io/specification): one shared package per skill, with agent-neutral instructions and optional Codex metadata. Installation is documented for Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf/Cascade, OpenCode, and Kiro. Other agents supporting this format can use the same packages through their own discovery paths. See [agent compatibility](docs/agent-compatibility.md) for paths, invocation, and runtime limits.
+
 ## Available Skills
 
 | Skill | Purpose |
@@ -20,41 +22,52 @@ Each skill is a self-contained package:
 ```text
 skills/
 └── skill-name/
-    ├── SKILL.md
+    ├── SKILL.md              # Shared instructions and standard frontmatter
     ├── agents/
-    │   └── openai.yaml
-    └── references/
+    │   └── openai.yaml       # Optional Codex integration
+    └── references/           # Supporting guidance, when needed
 ```
 
-Skills may also include `scripts/` or `assets/` when needed.
+Skills may also include `scripts/` or `assets/` when needed. Install the complete skill directory, including references and bundled licenses.
 
-## Install a Skill for Codex
+`agents/openai.yaml` provides Codex presentation and invocation metadata; it is not the skill implementation or a requirement for other agents. The current files only configure display text and a default prompt. [OpenAI metadata documentation](https://learn.chatgpt.com/docs/build-skills#optional-metadata).
 
-Copy a skill into your personal Codex skills directory:
+## Install
+
+With Node.js/npm available, run the open [Skills CLI](https://github.com/vercel-labs/skills) from the project where you want to use the skills. First list the available packages:
 
 ```bash
-mkdir -p ~/.codex/skills
-cp -R skills/<skill-name> ~/.codex/skills/
+npx skills add noestradamus/skills --list
 ```
 
-Start a new Codex session if the skill is not discovered immediately.
+Install one skill for selected agents, or all six:
+
+```bash
+npx skills add noestradamus/skills --skill mobile-app-design --agent claude-code codex --copy
+
+npx skills add noestradamus/skills --skill '*' --agent codex claude-code gemini-cli github-copilot cursor windsurf opencode kiro-cli --copy
+```
+
+Keep only the agents you use. These commands install into the current project; add `--global` for personal installation. `--copy` avoids symlink requirements. The CLI is an optional third-party installer, not a runtime dependency of these skills. For installation without npm, use the [manual instructions and official agent paths](docs/agent-compatibility.md).
+
+Package discovery and project installation were checked with Skills CLI **1.5.25**. See [the audit and verification record](docs/portability-verification.md) for the exact scope; installing files does not establish successful task execution in every agent.
 
 ## Usage
 
-Invoke a skill explicitly with:
+Ask for the skill by name in ordinary language, or select it through your agent's skill picker. Shortcut syntax varies by host; see [invocation details](docs/agent-compatibility.md).
 
 ```text
-Use $fowler-refactoring to improve a module or run a systematic code-hygiene campaign without changing observable behavior.
+Use the fowler-refactoring skill to improve a module or run a systematic code-hygiene campaign without changing observable behavior.
 
-Use $mobile-app-design to design and implement an Expo/React Native experience for iOS and Android.
+Use the mobile-app-design skill to design and implement an Expo/React Native experience for iOS and Android.
 
-Use $paradigm-forge to design an original AI project direction with a concrete discovery loop.
+Use the paradigm-forge skill to design an original AI project direction with a concrete discovery loop.
 
-Use $pushing-research-frontier to design a research plan for surpassing the strongest current baseline.
+Use the pushing-research-frontier skill to design a research plan for surpassing the strongest current baseline.
 
-Use $research-to-runnable to choose or adapt a method for this computational problem, run one useful pilot in my project, and explain what the evidence supports.
+Use the research-to-runnable skill to choose or adapt a method for this computational problem, run one useful pilot in my project, and explain what the evidence supports.
 
-Use $top1percent to teach me evolution and natural selection in about ten minutes, starting from zero knowledge, including at least one illustration that explains a central idea, and ending with a path toward mastery.
+Use the top1percent skill to teach me evolution and natural selection in about ten minutes, starting from zero knowledge, including at least one illustration that explains a central idea, and ending with a path toward mastery.
 ```
 
 ## Adding Skills
@@ -62,5 +75,5 @@ Use $top1percent to teach me evolution and natural selection in about ten minute
 1. Create a directory under `skills/`.
 2. Add a valid `SKILL.md` with `name` and `description` frontmatter.
 3. Include only the references, scripts, and assets required by the skill.
-4. Validate the skill before installing or sharing it.
+4. Follow the [portability checklist](docs/agent-compatibility.md#keeping-skills-portable) and validate the skill before sharing it.
 5. Review bundled files for sensitive or project-specific information.
