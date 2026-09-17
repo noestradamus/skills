@@ -1,4 +1,8 @@
-# Agent Skills
+# skill issue.
+
+Your agent has a skill issue.
+
+Good thing skills are installable.
 
 Reusable skills for AI-agent research workflows, engineering practices, personal automation, and focused learning.
 
