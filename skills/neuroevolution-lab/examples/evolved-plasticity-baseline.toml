@@ -1,0 +1,14 @@
+name = "evolved-plasticity-frozen-synapse-control"
+method = "evolved_plasticity"
+target = "associative_memory"
+seed = 0
+population_size = 4
+generations = 3
+[parameters]
+cues = 3
+episodes = 4
+mutation_sigma = 0.15
+plasticity_enabled = false
+[budget]
+max_evaluations = 24
+wall_seconds = 120

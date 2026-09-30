@@ -1,0 +1,18 @@
+name = "erl-without-actor-reinsertion-control"
+method = "erl"
+target = "tracking_control"
+seed = 0
+population_size = 4
+generations = 3
+[parameters]
+hidden = 8
+horizon = 20
+mutation_sigma = 0.06
+rl_reinsertion = false
+[learning]
+inner_steps = 5
+batch_size = 16
+learning_rate = 0.003
+[budget]
+max_evaluations = 24
+wall_seconds = 120

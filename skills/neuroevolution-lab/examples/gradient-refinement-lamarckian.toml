@@ -1,0 +1,16 @@
+name = "gradient-refinement-lamarckian"
+method = "gradient_refinement"
+target = "sine_regression"
+seed = 0
+population_size = 4
+generations = 3
+[parameters]
+hidden = 8
+mutation_sigma = 0.06
+[learning]
+inheritance = "lamarckian"
+inner_steps = 12
+learning_rate = 0.03
+[budget]
+max_evaluations = 24
+wall_seconds = 120

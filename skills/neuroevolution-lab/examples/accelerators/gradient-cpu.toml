@@ -1,0 +1,21 @@
+name = "gradient-refinement-baldwinian"
+method = "gradient_refinement"
+target = "sine_regression"
+seed = 0
+population_size = 32
+generations = 2
+[parameters]
+hidden = 32
+mutation_sigma = 0.06
+[learning]
+inheritance = "baldwinian"
+inner_steps = 12
+learning_rate = 0.03
+[budget]
+max_evaluations = 64
+wall_seconds = 120
+
+[compute]
+backend = "torch"
+device = "cpu"
+batch_size = 32

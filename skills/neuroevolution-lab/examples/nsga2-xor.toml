@@ -1,0 +1,9 @@
+name = "nsga2-xor"
+method = "nsga2"
+target = "xor"
+seed = 7
+population_size = 16
+generations = 8
+[budget]
+max_evaluations = 128
+wall_seconds = 120

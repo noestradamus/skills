@@ -1,0 +1,9 @@
+name = "neat-xor"
+method = "neat"
+target = "xor"
+seed = 7
+population_size = 24
+generations = 12
+[budget]
+max_evaluations = 288
+wall_seconds = 120

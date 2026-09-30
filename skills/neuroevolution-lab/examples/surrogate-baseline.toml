@@ -1,0 +1,15 @@
+name = "direct-neural-prescription-baseline"
+method = "surrogate"
+target = "surrogate-control"
+seed = 23
+population_size = 16
+generations = 5
+
+[parameters]
+search_mode = "direct"
+mutation_sigma = 0.2
+
+[budget]
+max_evaluations = 160
+wall_seconds = 120
+workers = 1

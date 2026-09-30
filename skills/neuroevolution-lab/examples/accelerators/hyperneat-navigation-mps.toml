@@ -1,0 +1,19 @@
+name = "hyperneat-navigation"
+method = "hyperneat"
+target = "navigation"
+seed = 7
+population_size = 24
+generations = 12
+[budget]
+max_evaluations = 288
+wall_seconds = 180
+[parameters]
+hidden = 6
+horizon = 100
+expression_threshold = 0.2
+weight_scale = 3.0
+
+[compute]
+backend = "torch"
+device = "mps"
+batch_size = 32

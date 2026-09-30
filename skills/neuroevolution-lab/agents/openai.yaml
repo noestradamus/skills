@@ -1,0 +1,4 @@
+interface:
+  display_name: "Neuroevolution Lab"
+  short_description: "Evolve neural systems and executable LLM agents"
+  default_prompt: "Use $neuroevolution-lab to design and run a bounded, reproducible evolutionary experiment, then replay discoveries and explain the measured evidence."

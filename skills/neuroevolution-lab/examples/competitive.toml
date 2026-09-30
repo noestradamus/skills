@@ -1,0 +1,15 @@
+name = "competitive-neural-rps"
+method = "competitive"
+target = "competitive-rps"
+seed = 23
+population_size = 10
+generations = 5
+
+[parameters]
+archive_size = 4
+mutation_sigma = 0.25
+
+[budget]
+max_evaluations = 80
+wall_seconds = 120
+workers = 1

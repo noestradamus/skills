@@ -1,0 +1,18 @@
+name = "evolutionary-initialization"
+method = "evolutionary_initialization"
+target = "sine_task_family"
+seed = 0
+population_size = 4
+generations = 3
+[parameters]
+hidden = 8
+train_tasks = 3
+mutation_sigma = 0.06
+parent_selection = "fitness"
+[learning]
+inheritance = "baldwinian"
+inner_steps = 10
+learning_rate = 0.03
+[budget]
+max_evaluations = 24
+wall_seconds = 120

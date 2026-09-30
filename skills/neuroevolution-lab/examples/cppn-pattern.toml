@@ -1,0 +1,11 @@
+name = "cppn-pattern"
+method = "cppn"
+target = "pattern"
+seed = 7
+population_size = 16
+generations = 8
+[budget]
+max_evaluations = 128
+wall_seconds = 120
+[parameters]
+resolution = 9

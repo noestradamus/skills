@@ -48,3 +48,23 @@ npx skills@1.5.25 add /absolute/path/to/skills-repository --skill '*' --agent co
 ```
 
 No agent clients were launched to execute these skills during this audit. Personal/global installations, cloud discovery, Windows execution, and equivalent output quality across models were not tested. Future runtime results should record the agent/version, skill revision, task, enabled capabilities, actual output, and observed limitations separately from these packaging checks.
+
+## Neuroevolution Lab addition — 2026-09-29
+
+The six-package audit above remains a historical record. The seventh package, `neuroevolution-lab`, adds a bundled Python 3.12 toolkit with exact uv dependencies, CPU numerical libraries, examples and reproducible experiment scripts. Docker is required for evolved executable programs; model endpoints are optional because a file-based host-agent bridge is provided.
+
+A clean package snapshot was installed with Skills CLI 1.5.25 for the same eight agent targets. All files matched across the four physical installation roots. The copied package initialized its own environment and ran a controller example. Separate runtime validation covers native macOS ARM64 and Linux/aarch64 Docker. Fresh Codex operators completed representative neural and LLM tasks through the skill. These results do not establish other clients' runtime behavior or Linux x86-64/Windows/GPU support.
+
+Historical raw installation and runtime records are retained locally and are not distributed in this repository. The [package README](../skills/neuroevolution-lab/README.md) describes setup, repeatable checks and scope limitations. No proprietary agent or another skill is a runtime dependency.
+
+## Neuroevolution Lab accelerator extension — 2026-09-30
+
+The optional torch backend has now run all 20 supported profiles on both native macOS ARM64 CPU and an Apple M2 GPU, with 40 completed runs and saved-candidate replays. The native suite passed 196 tests; a rebuilt Linux/aarch64 CPU Docker environment passed 172. Hardware-dependent skips are recorded separately.
+
+CUDA has a separate exact dependency lock and a successful frozen Linux x86-64 installation dry-run. NVIDIA hardware execution, Linux x86-64 runtime behavior, Windows, and accelerator operation through other agent clients remain unverified. Installation discovery and runtime evidence remain distinct. See the [accelerator reference](../skills/neuroevolution-lab/references/accelerators.md) for repeatable checks, benchmark scope and device limitations.
+
+## Pre-publication critical review — 2026-09-30
+
+A subsequent independent mechanism/runtime review found and repaired substantive defects. The corrected package passed 227 native macOS ARM64 tests, including actual MPS and host Docker operation; 23 CUDA hardware cases were skipped. The rebuilt Linux ARM64 CPU image passed 203 tests, with 47 unavailable-hardware/nested-Docker skips. All 40 supported CPU/MPS operation examples were rerun, along with corrected structural demonstrations and the full five-seed ecology protocol. These are historical observations; raw records are retained locally rather than bundled with the package.
+
+The new Linux x86-64 CI workflow checks the exact lock and exercises the README quickstart. Its actual run status, rather than its presence in the repository, determines verification for a published revision. This does not validate NVIDIA execution. The [mechanism map](../skills/neuroevolution-lab/references/book-to-capability.md) links the tests and reproducible examples. The [README](../skills/neuroevolution-lab/README.md) states the remaining practical limitations and publication scope.
