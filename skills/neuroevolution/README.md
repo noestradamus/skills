@@ -4,6 +4,9 @@ A portable agent skill and executable Python toolkit for evolving neural systems
 and executable LLM agents. It includes canonical mechanisms, small reference
 environments, runnable examples and tools for saving and replaying experiments.
 
+Inspired by *Neuroevolution: Harnessing Creativity in AI Agent Design* by
+Sebastian Risi, Yujin Tang, David Ha, and Risto Miikkulainen.
+
 The built-in examples run immediately after setup. A new application domain needs
 its own evaluator/representation adapter and mechanism checks. Supported method
 combinations are explicit; successful experiments do not guarantee superiority.
