@@ -1,0 +1,13 @@
+name = "random-search-cartpole"
+method = "random_search"
+target = "cartpole"
+seed = 7
+population_size = 16
+generations = 8
+[budget]
+max_evaluations = 128
+wall_seconds = 120
+[parameters]
+hidden = 4
+horizon = 100
+episodes = 3

@@ -1,0 +1,13 @@
+name = "novelty-navigation"
+method = "novelty"
+target = "navigation"
+seed = 7
+population_size = 16
+generations = 8
+[budget]
+max_evaluations = 128
+wall_seconds = 120
+[parameters]
+horizon = 80
+novelty_threshold = 0.05
+neighbors = 5

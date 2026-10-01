@@ -1,0 +1,16 @@
+name = "neural router"
+method = "neural_router"
+target = "arithmetic_tools"
+seed = 0
+population_size = 2
+generations = 2
+[parameters]
+train_cases = 2
+[model]
+provider = "bridge"
+model = "operating-agent"
+max_output_tokens = 1024
+[budget]
+max_evaluations = 4
+max_model_calls = 8
+wall_seconds = 600

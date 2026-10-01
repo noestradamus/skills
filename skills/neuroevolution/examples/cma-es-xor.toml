@@ -1,0 +1,12 @@
+name = "cma-es-xor"
+method = "cma_es"
+target = "xor"
+seed = 7
+population_size = 12
+generations = 12
+[budget]
+max_evaluations = 144
+wall_seconds = 120
+[parameters]
+hidden = 4
+sigma = 0.5

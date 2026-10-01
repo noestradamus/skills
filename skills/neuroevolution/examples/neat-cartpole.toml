@@ -1,0 +1,12 @@
+name = "neat-cartpole"
+method = "neat"
+target = "cartpole"
+seed = 7
+population_size = 24
+generations = 12
+[budget]
+max_evaluations = 288
+wall_seconds = 180
+[parameters]
+horizon = 200
+episodes = 3

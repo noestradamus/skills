@@ -1,0 +1,16 @@
+name = "actual-tiny-lm-full-weight-evolution"
+method = "parameter_evolution"
+target = "tiny_autoregressive"
+seed = 0
+population_size = 4
+generations = 3
+[parameters]
+hidden = 12
+mode = "full"
+mutation_sigma = 0.008
+[learning]
+inner_steps = 20
+learning_rate = 0.015
+[budget]
+max_evaluations = 24
+wall_seconds = 120

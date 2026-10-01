@@ -1,0 +1,13 @@
+name = "hyperneat-xor"
+method = "hyperneat"
+target = "xor"
+seed = 7
+population_size = 16
+generations = 8
+[budget]
+max_evaluations = 128
+wall_seconds = 120
+[parameters]
+hidden = 4
+expression_threshold = 0.2
+weight_scale = 3.0

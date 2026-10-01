@@ -1,0 +1,21 @@
+name = "aligned-tiny-autoregressive-model-merging"
+method = "model_merging"
+target = "tiny_autoregressive"
+seed = 0
+population_size = 4
+generations = 3
+[parameters]
+hidden = 12
+mutation_sigma = 0.12
+parent_selection = "fitness"
+[learning]
+inner_steps = 20
+learning_rate = 0.015
+[budget]
+max_evaluations = 24
+wall_seconds = 120
+
+[compute]
+backend = "torch"
+device = "mps"
+batch_size = 32

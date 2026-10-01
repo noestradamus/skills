@@ -1,0 +1,13 @@
+name = "fixed-controller-cartpole"
+method = "fixed_controller"
+target = "cartpole"
+seed = 7
+population_size = 2
+generations = 1
+[budget]
+max_evaluations = 1
+wall_seconds = 120
+[parameters]
+hidden = 4
+horizon = 80
+episodes = 3

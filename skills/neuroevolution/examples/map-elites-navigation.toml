@@ -1,0 +1,12 @@
+name = "map-elites-navigation"
+method = "map_elites"
+target = "navigation"
+seed = 7
+population_size = 16
+generations = 8
+[budget]
+max_evaluations = 128
+wall_seconds = 120
+[parameters]
+bins = 8
+horizon = 80

@@ -1,0 +1,15 @@
+name = "cooperative-neural-actuators"
+method = "cooperative"
+target = "cooperative-tracking"
+seed = 23
+population_size = 10
+generations = 4
+
+[parameters]
+collaborators = 2
+mutation_sigma = 0.2
+
+[budget]
+max_evaluations = 200
+wall_seconds = 120
+workers = 1

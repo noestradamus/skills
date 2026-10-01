@@ -1,0 +1,13 @@
+name = "modular-nas"
+method = "modular_nas"
+target = "continuous_xor"
+seed = 7
+population_size = 6
+generations = 3
+[budget]
+max_evaluations = 18
+wall_seconds = 180
+[learning]
+steps = 60
+learning_rate = 0.05
+train_size = 64

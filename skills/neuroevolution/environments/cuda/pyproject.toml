@@ -1,0 +1,23 @@
+[project]
+name = "neuroevolution-cuda"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = ["neuroevolution", "torch==2.14.0"]
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[tool.uv]
+# Replace the editable package's CPU-index torch requirement with this project's
+# cu130 source. The version stays aligned with the default package dependency.
+override-dependencies = ["torch==2.14.0"]
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+
+[tool.uv.sources]
+neuroevolution = { path = "../..", editable = true }
+torch = { index = "pytorch-cu130" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true

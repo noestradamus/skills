@@ -1,0 +1,14 @@
+name = "differentiable-qd-gradient-archive-variant"
+method = "differentiable_qd"
+target = "differentiable_arm"
+seed = 0
+population_size = 8
+generations = 3
+[parameters]
+joints = 4
+bins = 8
+step_size = 0.35
+gradient_proposals = true
+[budget]
+max_evaluations = 32
+wall_seconds = 120
