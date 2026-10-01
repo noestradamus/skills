@@ -273,7 +273,7 @@ def environment_identity(device="cpu",backend="reference"):
     import platform
     import sys
     versions = {}
-    for name in ("neuroevolution-lab","numpy","scipy","neat-python","cma","ribs","pymoo","torch","gymnasium"):
+    for name in ("neuroevolution","numpy","scipy","neat-python","cma","ribs","pymoo","torch","gymnasium"):
         try: versions[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError: versions[name] = "missing"
     source = Path(__file__).parent

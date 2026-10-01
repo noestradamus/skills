@@ -1,9 +1,9 @@
 ---
-name: neuroevolution-lab
+name: neuroevolution
 description: Design and run reproducible evolutionary experiments for neural controllers, learned representations, learning rules, and executable LLM agents. Use for neuroevolution, NEAT/HyperNEAT, novelty or quality-diversity search, evolution-learning hybrids, coevolution, and model-mediated evolutionary program or workflow discovery.
 ---
 
-# Neuroevolution Lab
+# Neuroevolution
 
 Design a process that discovers capable systems through variation, execution, selection, and retained alternatives. This package has two equal tracks: evolving actual neural systems, and evolving executable agents around language models. Operate the bundled toolkit; keep method identity and measured evidence explicit.
 

@@ -1,8 +1,8 @@
 [project]
-name = "neuroevolution-lab-cuda"
+name = "neuroevolution-cuda"
 version = "0.1.0"
 requires-python = ">=3.12,<3.13"
-dependencies = ["neuroevolution-lab", "torch==2.14.0"]
+dependencies = ["neuroevolution", "torch==2.14.0"]
 
 [dependency-groups]
 dev = ["pytest==9.1.1"]
@@ -14,7 +14,7 @@ override-dependencies = ["torch==2.14.0"]
 environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
 
 [tool.uv.sources]
-neuroevolution-lab = { path = "../..", editable = true }
+neuroevolution = { path = "../..", editable = true }
 torch = { index = "pytorch-cu130" }
 
 [[tool.uv.index]]

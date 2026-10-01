@@ -72,6 +72,6 @@ Resume preserves the frozen specification; it does not increase a spent budget. 
 
 ## Linux and generated programs
 
-`docker build -t neuroevolution-lab:local .` builds the pinned CPU environment. `docker run --rm --network none neuroevolution-lab:local python -m pytest -q` verifies numerical mechanisms in Linux. The generated-program tests run against the host's Docker daemon separately; do not mount a Docker socket into untrusted candidate containers.
+`docker build -t neuroevolution:local .` builds the pinned CPU environment. `docker run --rm --network none neuroevolution:local python -m pytest -q` verifies numerical mechanisms in Linux. The generated-program tests run against the host's Docker daemon separately; do not mount a Docker socket into untrusted candidate containers.
 
 The program image is Python 3.12 slim, pulled explicitly before use. The sandbox records the resolved image ID and runs without network, host mounts, capabilities or credentials, under a non-root user, with a read-only filesystem and limits on memory, CPU, processes and elapsed time. AST validation enforces the experiment grammar, while Docker provides process isolation. Production multi-tenant sandbox hardening is separately scoped.

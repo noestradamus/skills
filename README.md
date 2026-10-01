@@ -14,7 +14,7 @@ The seven skills use the open [Agent Skills format](https://agentskills.io/speci
 | --- | --- |
 | [`fowler-refactoring`](skills/fowler-refactoring/) | Refactor or systematically clean existing code through small verified transformations, evidence-backed dispositions, and proportionate guardrails. |
 | [`mobile-app-design`](skills/mobile-app-design/) | Design, implement, review, and polish Expo/React Native interfaces with distinct iOS and Android behavior, purposeful motion, and evidence-based verification. |
-| [`neuroevolution-lab`](skills/neuroevolution-lab/) | Experimental reference lab for neural-system and LLM-agent evolution: executable mechanisms, optional GPU support, local experiment reports and saved-candidate replay. |
+| [`neuroevolution`](skills/neuroevolution/) | Experimental reference lab for neural-system and LLM-agent evolution: executable mechanisms, optional GPU support, local experiment reports and saved-candidate replay. |
 | [`paradigm-forge`](skills/paradigm-forge/) | Design ambitious, original AI project directions with concrete discovery mechanisms and human judgment. |
 | [`pushing-research-frontier`](skills/pushing-research-frontier/) | Plan, execute, and evaluate research intended to surpass the strongest current method. |
 | [`research-to-runnable`](skills/research-to-runnable/) | Turn a computational problem, paper, or method repository into one runnable pilot with a credible comparison, reproducible evidence, and a practical decision. |
@@ -33,7 +33,7 @@ skills/
     └── references/           # Supporting guidance, when needed
 ```
 
-Skills may also include `scripts/`, `assets/`, or a bundled executable toolkit when needed. Install the complete versioned skill directory, including references and bundled licenses. Neuroevolution Lab additionally includes Python source, an exact `uv.lock`, tests, examples and experiment scripts; initialize its own Python 3.12 environment after installation. Generated evaluation artifacts remain local and are not distributed in Git.
+Skills may also include `scripts/`, `assets/`, or a bundled executable toolkit when needed. Install the complete versioned skill directory, including references and bundled licenses. Neuroevolution additionally includes Python source, an exact `uv.lock`, tests, examples and experiment scripts; initialize its own Python 3.12 environment after installation. Generated evaluation artifacts remain local and are not distributed in Git.
 
 `agents/openai.yaml` provides Codex presentation and invocation metadata; it is not the skill implementation or a requirement for other agents. The current files only configure display text and a default prompt. [OpenAI metadata documentation](https://learn.chatgpt.com/docs/build-skills#optional-metadata).
 
@@ -66,7 +66,7 @@ Use the fowler-refactoring skill to improve a module or run a systematic code-hy
 
 Use the mobile-app-design skill to design and implement an Expo/React Native experience for iOS and Android.
 
-Use neuroevolution-lab to run a supported neural experiment, choose CPU or available GPU execution, replay the saved candidate, and explain the measured evidence.
+Use neuroevolution to run a supported neural experiment, choose CPU or available GPU execution, replay the saved candidate, and explain the measured evidence.
 
 Use the paradigm-forge skill to design an original AI project direction with a concrete discovery loop.
 

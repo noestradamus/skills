@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "neuroevolution-lab"
+name = "neuroevolution"
 version = "0.1.0"
 description = "Reproducible neural and LLM-agent evolution operated through an agent skill"
 requires-python = ">=3.12,<3.13"

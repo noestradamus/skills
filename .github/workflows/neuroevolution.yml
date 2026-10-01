@@ -1,14 +1,14 @@
-name: Neuroevolution Lab CPU checks
+name: Neuroevolution CPU checks
 
 on:
   push:
     paths:
-      - 'skills/neuroevolution-lab/**'
-      - '.github/workflows/neuroevolution-lab.yml'
+      - 'skills/neuroevolution/**'
+      - '.github/workflows/neuroevolution.yml'
   pull_request:
     paths:
-      - 'skills/neuroevolution-lab/**'
-      - '.github/workflows/neuroevolution-lab.yml'
+      - 'skills/neuroevolution/**'
+      - '.github/workflows/neuroevolution.yml'
 
 permissions:
   contents: read
@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 15
     defaults:
       run:
-        working-directory: skills/neuroevolution-lab
+        working-directory: skills/neuroevolution
     env:
       MPLCONFIGDIR: /tmp/neuroevolution-matplotlib
       OMP_NUM_THREADS: '1'

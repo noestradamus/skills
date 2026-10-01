@@ -483,7 +483,7 @@ wheels = [
 ]
 
 [[package]]
-name = "neuroevolution-lab"
+name = "neuroevolution"
 version = "0.1.0"
 source = { editable = "../../" }
 dependencies = [
@@ -520,11 +520,11 @@ requires-dist = [
 dev = [{ name = "pytest", specifier = "==9.1.1" }]
 
 [[package]]
-name = "neuroevolution-lab-cuda"
+name = "neuroevolution-cuda"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "neuroevolution-lab", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
+    { name = "neuroevolution", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "torch", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
 ]
 
@@ -535,7 +535,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "neuroevolution-lab", editable = "../../" },
+    { name = "neuroevolution", editable = "../../" },
     { name = "torch", specifier = "==2.14.0", index = "https://download.pytorch.org/whl/cu130" },
 ]
 

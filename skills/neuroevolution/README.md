@@ -1,4 +1,4 @@
-# Neuroevolution Lab
+# Neuroevolution
 
 A portable agent skill and executable Python toolkit for evolving neural systems
 and executable LLM agents. It includes canonical mechanisms, small reference
@@ -32,7 +32,7 @@ Open `runs/first/report.md`. The output directory also holds the configuration,
 environment identity, candidate evidence, journal, figures and trusted-local
 checkpoint. `resume` continues an interrupted run with its original budget.
 
-Through an agent, ask: “Use neuroevolution-lab to run the NEAT CartPole example,
+Through an agent, ask: “Use neuroevolution to run the NEAT CartPole example,
 replay the saved controller under unseen conditions, and explain the evidence.”
 
 ## CPU and GPU execution
@@ -72,7 +72,7 @@ See the exact commands in [LLM experiments](references/llm.md). Paid endpoints
 require explicit spending configuration. Generated programs additionally require
 Docker. Model-server inference hardware is independent of this runner's device.
 
-Through an agent, ask: “Use neuroevolution-lab to run the workflow example through
+Through an agent, ask: “Use neuroevolution to run the workflow example through
 the host-agent bridge, freeze the winner, and evaluate held-out cases.”
 
 ## Scope and verification
