@@ -1,0 +1,4 @@
+interface:
+  display_name: "UX Psychology"
+  short_description: "Shape compelling flows with psychology and emotion"
+  default_prompt: "Use $ux-psychology to improve this flow or shape a new feature with concrete screens, copy, and interactions."
