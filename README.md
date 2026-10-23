@@ -4,9 +4,9 @@ Your agent has a skill issue.
 
 Good thing skills are installable.
 
-Reusable skills for AI-agent research workflows, engineering practices, personal automation, and focused learning.
+Reusable skills for AI-agent research workflows, engineering practices, product design, personal automation, and focused learning.
 
-The seven skills use the open [Agent Skills format](https://agentskills.io/specification): one shared package per skill, with agent-neutral instructions and optional Codex metadata. Installation is documented for Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf/Cascade, OpenCode, and Kiro. Other agents supporting this format can use the same packages through their own discovery paths. See [agent compatibility](docs/agent-compatibility.md) for paths, invocation, and runtime limits.
+The eight skills use the open [Agent Skills format](https://agentskills.io/specification): one shared package per skill, with agent-neutral instructions and optional Codex metadata. Installation is documented for Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf/Cascade, OpenCode, and Kiro. Other agents supporting this format can use the same packages through their own discovery paths. See [agent compatibility](docs/agent-compatibility.md) for paths, invocation, and runtime limits.
 
 ## Available Skills
 
@@ -19,6 +19,7 @@ The seven skills use the open [Agent Skills format](https://agentskills.io/speci
 | [`pushing-research-frontier`](skills/pushing-research-frontier/) | Plan, execute, and evaluate research intended to surpass the strongest current method. |
 | [`research-to-runnable`](skills/research-to-runnable/) | Turn a computational problem, paper, or method repository into one runnable pilot with a credible comparison, reproducible evidence, and a practical decision. |
 | [`top1percent`](skills/top1percent/) | Learn a topic or practical skill in about ten minutes through source-checked explanations, at least one illustration, examples, a short exercise, and a path toward mastery. |
+| [`ux-psychology`](skills/ux-psychology/) | Audit existing flows and shape new features with behavioral and emotional design, connecting concrete screens, copy, and interactions to activation, conversion, retention, and business outcomes. |
 
 ## Structure
 
@@ -45,7 +46,7 @@ With Node.js/npm available, run the open [Skills CLI](https://github.com/vercel-
 npx skills add noestradamus/skills --list
 ```
 
-Install one skill for selected agents, or all seven:
+Install one skill for selected agents, or all eight:
 
 ```bash
 npx skills add noestradamus/skills --skill mobile-app-design --agent claude-code codex --copy
@@ -77,6 +78,10 @@ Use the pushing-research-frontier skill to design a research plan for surpassing
 Use the research-to-runnable skill to choose or adapt a method for this computational problem, run one useful pilot in my project, and explain what the evidence supports.
 
 Use the top1percent skill to teach me evolution and natural selection in about ten minutes, starting from zero knowledge, including at least one illustration that explains a central idea, and ending with a path toward mastery.
+
+Use the ux-psychology skill to audit this onboarding flow and propose concrete changes to its screens, copy, and interactions that help users reach first value.
+
+Use the ux-psychology skill while building this feature to make it more compelling, connect the emotional experience to meaningful engagement, and identify what to measure.
 ```
 
 ## Adding Skills
