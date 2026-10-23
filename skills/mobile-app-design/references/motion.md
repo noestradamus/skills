@@ -1,6 +1,6 @@
 # Motion, gestures, and haptics
 
-Use motion to explain, acknowledge, orient, or support direct manipulation. Technical guidance checked 2026-09-07. Keep platform-specific conventions in [iOS](ios.md) and [Android](android.md), and navigation relationships in [Interaction and state](interaction-and-state.md).
+Use motion to explain, acknowledge, orient, or support direct manipulation. This reference owns shared behavior, not framework APIs. Use [SwiftUI](swiftui.md) or [Expo and React Native](expo-react-native.md) for implementation, [iOS](ios.md) and [Android](android.md) for platform conventions, and [Interaction and state](interaction-and-state.md) for navigation. Widgets have a different execution model; use [WidgetKit](widgetkit.md) before applying app animation techniques there.
 
 ## Decide what motion earns
 
@@ -15,12 +15,12 @@ First identify who owns the transition: native control, navigator, layout, or cu
 | Requirement | Prefer |
 | --- | --- |
 | Existing native transition or feedback | Its supported configuration |
-| Simple state change | Existing declarative transition; compatible Reanimated CSS transition if available |
+| Simple state change | A scoped declarative animation or transition in the existing framework |
 | Mount, exit, or genuine reflow | Supported layout/lifecycle animation with stable identity |
-| Continuous drag or scroll response | UI-runtime shared values and gesture primitives |
+| Continuous drag or scroll response | The framework's gesture/animation state, with a deliberate commit boundary |
 | Complex illustration | An appropriate existing asset/rendering tool, with a static equivalent |
 
-Inspect versions before choosing an API. An existing adequate implementation need not be rewritten. Reanimated/Worklets compatibility is version-specific. [Compatibility](https://docs.swmansion.com/react-native-reanimated/docs/guides/compatibility/).
+Inspect versions before choosing an API. An existing adequate implementation need not be rewritten. Keep unrelated state changes outside the animation's scope.
 
 ## Make gestures continuous and recoverable
 
@@ -28,11 +28,11 @@ Define idle, tracking, settling, committed, and canceled outcomes. On takeover, 
 
 A spring often suits momentum and interruptible settling; timing can suit a deliberate two-state change. Choose parameters from the intended behavior and test them. Do not impose one spring or easing curve on every surface.
 
-Keep continuous calculations on the UI runtime. Send semantic events to React at deliberate boundaries, with protection against duplicate commits. React state is appropriate for discrete press/selection changes, not as a per-frame animation transport. Reanimated get/set is compiler-compatible; shared-value reads or writes during render are invalid. [Shared values](https://docs.swmansion.com/react-native-reanimated/docs/core/useSharedValue/).
+Separate transient presentation/gesture state from committed domain state. Keep per-frame work in the framework's animation machinery and commit semantic actions at deliberate boundaries, protecting against duplicate commits.
 
 ## Preserve geometry and exit lifecycle
 
-Prefer non-layout animated properties when they express the intended result without distortion. They still cost rendering work; backgroundColor is also non-layout. Legitimate layout animation should be measured and profiled, not replaced with misleading scaling. [Performance guidance](https://docs.swmansion.com/react-native-reanimated/docs/guides/performance/).
+Prefer less expensive properties when they express the intended result without distortion. Legitimate layout animation should be measured and profiled, not replaced with misleading scaling; property choice alone does not establish performance.
 
 Measure relevant container/content bounds and refresh after text scaling, content updates, resizing, or orientation changes. Avoid fixed offscreen distances for variable content. Check transformed hit regions and clip boundaries.
 
@@ -42,9 +42,9 @@ An exit must define when semantic state changes, when the element unmounts, and 
 
 Keep the same information, actions, and final state with reduced motion. Prefer immediate state changes or quieter alternatives where appropriate; remove unnecessary travel, parallax, and overshoot. Preserve native preference handling and verify effective per-screen options: a child override can defeat a parent fallback.
 
-Reanimated normally respects ReduceMotion.System, but useReducedMotion reports the startup setting and does not itself rerender on changes. For custom behavior that must update live, use an appropriate reactive preference source such as AccessibilityInfo's query and change event. Test preferences both before launch and while open. [Reanimated accessibility](https://docs.swmansion.com/react-native-reanimated/docs/guides/accessibility/), [useReducedMotion](https://docs.swmansion.com/react-native-reanimated/docs/device/useReducedMotion/), [AccessibilityInfo](https://reactnative.dev/docs/accessibilityinfo).
+Use the framework's current preference source and test both launch-time and in-session changes where applicable. Check descendant animations as well as the parent transition; suppressing one celebration does not establish reduced-motion behavior for the whole screen.
 
-Use haptics sparingly at meaningful selection, threshold, or result events. Avoid duplicates from native controls and per-frame pulses. Pair them with visible feedback; hardware and preferences can suppress them. Android has dedicated haptic APIs. Scheduling at the causal event does not prove exact-frame delivery. [Expo Haptics](https://docs.expo.dev/versions/v56.0.0/sdk/haptics/).
+Use haptics sparingly at meaningful selection, threshold, or result events. Avoid duplicates from native controls and per-frame pulses. Pair them with visible feedback; hardware and preferences can suppress them. Use the platform's supported feedback through the chosen framework. Scheduling at the causal event does not prove exact-frame delivery.
 
 ## Verify what cannot be inferred
 

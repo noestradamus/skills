@@ -1,6 +1,6 @@
 # Expo and React Native implementation
 
-Use this reference when turning an agreed mobile design into code. Technical guidance checked 2026-09-07; match it to the installed project rather than assuming today's APIs apply. Resolve interaction semantics in [Interaction and state](interaction-and-state.md), and platform behavior in [iOS](ios.md) and [Android](android.md).
+Use this reference for Expo/React Native implementation, not a SwiftUI app. Base guidance checked 2026-09-07; motion and widget routing checked 2026-10-23. Match it to the installed project rather than assuming today's APIs apply. Resolve interaction semantics in [Interaction and state](interaction-and-state.md), platform behavior in [iOS](ios.md) and [Android](android.md), and motion intent in [Motion](motion.md).
 
 ## Establish compatibility before selecting APIs
 
@@ -49,6 +49,24 @@ Core keyboard avoidance can handle simple layouts. For complex forms or content 
 Extend the existing token and styling system. Inline styles, StyleSheet, and an established styling library are implementation choices. Use semantic color roles; verify light/dark and high-contrast combinations. For animated color properties, check supported representations. Keeping semantic colors on a normal child while animating its wrapper can avoid unnecessary interpolation.
 
 Select shadows by capability and intended depth. `boxShadow` requires New Architecture; Android outset/inset support begins at Android 9/10. Elevation also affects stacking. Avoid a global replacement that changes layering or excludes supported devices. [Shadow APIs](https://reactnative.dev/docs/shadow-props), [View styles](https://reactnative.dev/docs/view-style-props#boxshadow).
+
+## Motion and feedback in React Native
+
+Keep existing native navigation and control transitions where adequate. For custom work, select compatible Reanimated CSS transitions for simple state changes, layout/entering/exiting APIs for genuine lifecycle changes, or shared values with gesture primitives for continuous manipulation. These are options, not a reason to upgrade or replace an existing solution. Verify installed Reanimated/Worklets/architecture compatibility before choosing an API.
+
+Keep continuous calculations on the animation/UI runtime. Send semantic events to React at deliberate boundaries; React state suits discrete selection, not per-frame animation transport. Do not read or write shared values during render. Reanimated's `get`/`set` methods provide a React Compiler-compatible route where supported. [Shared values](https://docs.swmansion.com/react-native-reanimated/docs/core/useSharedValue/).
+
+Prefer transform/opacity when they express the intended effect, without treating other properties as forbidden. Animated colors, including `backgroundColor`, are non-layout but still consume rendering work; legitimate reflow needs measurement. [Performance](https://docs.swmansion.com/react-native-reanimated/docs/guides/performance/).
+
+Reanimated normally respects `ReduceMotion.System`; `useReducedMotion` reports the startup preference and does not itself trigger rerenders on changes. For custom behavior that must update live, use an appropriate reactive source such as `AccessibilityInfo`'s query and change event. Inspect child overrides and test the final state with motion disabled. [Accessibility](https://docs.swmansion.com/react-native-reanimated/docs/guides/accessibility/), [useReducedMotion](https://docs.swmansion.com/react-native-reanimated/docs/device/useReducedMotion/), [AccessibilityInfo](https://reactnative.dev/docs/accessibilityinfo).
+
+Use existing platform-aware feedback primitives, or compatible Expo Haptics when needed. On Android prefer its dedicated haptic API where appropriate. Trigger once at the semantic event; native feedback may already cover it, and hardware/preferences can suppress it. [Expo Haptics](https://docs.expo.dev/versions/latest/sdk/haptics/).
+
+## Widgets in an Expo/React Native project
+
+For Apple widgets also read [WidgetKit](widgetkit.md). Inspect the existing integration before choosing handwritten SwiftUI or a compatible bridge. Current `expo-widgets` uses Expo UI in an isolated widget runtime, not the app's ordinary React Native tree; it has no React hooks, app state, or async work inside widget components. Match examples to the installed SDK/package and keep generated target settings in their owning config. Native configuration changes need a rebuilt binary; Expo Go does not validate the widget.
+
+For `expo-widgets`, a running-app interaction listener is insufficient for actions while the app is terminated. Verify the supported interaction path and persistence/reconciliation contract; a widget props update is not proof that the app's domain store changed. Read the current package docs for version-specific behavior. [Expo Widgets](https://docs.expo.dev/versions/latest/sdk/widgets/).
 
 ## Verify in the appropriate runtime
 

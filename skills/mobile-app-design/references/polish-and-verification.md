@@ -48,8 +48,12 @@ Use the platform references for target-specific requirements, [interaction and s
 | Persistent or asynchronous flow | Relevant offline/slow state, lost permission, background/foreground, re-entry or relaunch according to the persistence contract |
 | Gesture or motion | Actual moving interaction, interruption/reversal, repeated input, system motion preference |
 | Performance-sensitive surface | Representative data volume and interaction, release build, suitable physical target and measurement |
+| SwiftUI state ownership or external refresh | Draft/focus/navigation continuity, canceled or superseded tasks, background/foreground, stable item identity |
+| Widget content or interaction | Advertised families and rendering modes, placeholder/no-data/stale states, installed extension with app running and terminated, persisted action and app return |
 
 Do not invent irrelevant states for every component. Test lifecycle transitions when they can invalidate the state changed by the work. Use representative configurations for shared behavior and inspect platform-specific paths separately.
+
+Use [SwiftUI](swiftui.md) for framework-specific verification and [WidgetKit](widgetkit.md) for widget runtime checks. A successful Xcode preview supports a layout observation, not app lifecycle or installed-widget behavior. Keep review-only work read-only and avoid replacing ongoing app work with a validation setup.
 
 Before changing device theme, font scale, motion preferences, or other settings, record their current values and the explicit device identifier. Restore those values afterward, including after a failed check. Reuse available tools and runtimes; do not install packages, reset simulator data, or change global tooling merely to satisfy this checklist.
 

@@ -1,6 +1,6 @@
 # iOS and iPadOS
 
-Platform guidance checked 2026-09-07. Before choosing release-specific controls or effects, resolve the minimum iOS version and the installed Expo, React Native, and navigator support. Use [Interaction and state](interaction-and-state.md) for shared flow mechanics and [Motion](motion.md) for custom animation.
+Platform guidance checked 2026-09-07; implementation routing expanded 2026-10-23. Before choosing release-specific controls or effects, resolve the minimum OS version and actual framework/SDK support. Use [SwiftUI](swiftui.md) or [Expo and React Native](expo-react-native.md) for implementation, [WidgetKit](widgetkit.md) for widgets, [Interaction and state](interaction-and-state.md) for shared flow mechanics, and [Motion](motion.md) for custom animation.
 
 ## Native behavior, product identity
 
