@@ -1,6 +1,6 @@
 # Sources and synthesis decisions
 
-Maintenance reference. Do not load this file for routine design work. Sources were reviewed on **2026-09-07**. Repository revisions below are immutable; linked official documentation can change. The source authors do not endorse this synthesis.
+Maintenance reference. Do not load this file for routine design work. The original source skills were reviewed on **2026-09-07**; SwiftUI, WidgetKit, and affected Expo/motion guidance were added or checked on **2026-10-23**. Repository revisions below are immutable; linked official documentation can change. The source authors do not endorse this synthesis.
 
 ## Attribution and reading coverage
 
@@ -18,10 +18,27 @@ The package uses rewritten guidance and original decision structure. Upstream ex
 
 Coverage is deliberately narrower than the full upstream repositories. Expo's media/storage/WebGPU and other unrelated references, Expo UI's full component manuals, and the HIG skill's shell scripts were not audited. No upstream recipe was validated by running a native app during source analysis.
 
+## SwiftUI and WidgetKit extension
+
+The October extension uses primary framework documentation rather than treating React Native implementation advice as portable Swift syntax. Links beside each rule identify its technical source; this is rewritten guidance, not a bundled Apple template or additional third-party skill.
+
+| Primary sources checked | Decisions informed |
+|---|---|
+| Apple [model data](https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app), [incremental Observation adoption](https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro), [view identity](https://developer.apple.com/videos/play/wwdc2021/10022/), navigation, layout, focus, accessibility, tasks, concurrency, and preview documentation linked in [SwiftUI](swiftui.md) | Preserve existing architecture and deployment support; separate committed state, draft ownership, view identity, and async lifetimes. |
+| Apple [Widget HIG](https://developer.apple.com/design/human-interface-guidelines/widgets), extension architecture, timelines, interactivity, App Groups, rendering, and deep links linked in [WidgetKit](widgetkit.md); [SwiftData multiprocess lab](https://developer.apple.com/videos/play/wwdc2026/8017/) | Widgets have independent execution and storage constraints; previews do not establish durable actions or cross-process correctness. |
+| Expo [widgets documentation](https://docs.expo.dev/versions/latest/sdk/widgets/); Reanimated compatibility, reduced-motion, shared-value, and performance documentation linked in [Expo and React Native](expo-react-native.md) | Preserve the installed integration and generator; distinguish an isolated widget runtime from React Native, and local widget presentation from authoritative application data. Keep animation APIs in the framework reference. |
+
+This extension covers SwiftUI app interfaces on iOS/iPadOS and WidgetKit surfaces. It does not claim comprehensive UIKit, watchOS, macOS, or ActivityKit implementation coverage. Apple guidance includes APIs from different OS generations; actual SDK and deployment checks remain necessary. No native app or widget runtime was exercised to author these references.
+
 ## Consequential synthesis decisions
 
 | Inherited approach | Decision in this skill | Reason |
 |---|---|---|
+| One mobile framework assumed throughout | Route shared design rules to the actual implementation target | A SwiftUI app, React Native screen, and widget extension can share a product without sharing a runtime. |
+| Modernize architecture while polishing | Preserve suitable state, persistence, and navigation abstractions | New API availability is not a migration requirement, and deployment constraints still apply. |
+| Refresh by rebuilding the root view | Reconcile data at its owner while preserving navigation and drafts | View identity has state-lifetime consequences. |
+| Treat a widget as a small running app | Design a glance/action around timelines, supported controls, and durable shared data | Host-app memory and lifecycle callbacks are not an extension execution contract. |
+| A widget action changes presentation, therefore application data is saved | Verify durable writes and return-to-app reconciliation in the installed integration | Native intents and supported bridges expose different APIs; visible widget success alone proves neither persistence nor synchronization. |
 | Study a fixed quota of commercially successful screens | Research the unresolved decision; stop when evidence is sufficient | A local polish task and a novel flow need different effort; popularity does not prove suitability. |
 | One accent, one gray family, prescribed type/radius rules | Stable semantic roles and a product-specific visual thesis | Consistency should preserve a legitimate expressive brief rather than erase it. |
 | HIG interpreted as one visual template | Native behavior and accessible interaction with deliberate brand expression | Official Apple and Material guidance allow customization. |
@@ -41,8 +58,8 @@ Coverage is deliberately narrower than the full upstream repositories. Expo's me
 
 ## Keeping the skill useful
 
-The core owns scope, authority, routing, and evidence claims. Shared state rules belong in interaction-and-state; platform exceptions belong in ios/android; volatile API choices belong in expo-react-native/motion. Correct a rule at its owner rather than repeating patches across files.
+The core owns scope, authority, routing, and evidence claims. Shared state rules belong in interaction-and-state; platform exceptions belong in ios/android; motion owns interaction behavior, while expo-react-native and swiftui own framework APIs. Widget execution, shared data, and surface constraints belong in widgetkit; bridge-specific details belong in expo-react-native. Correct a rule at its owner rather than repeating patches across files.
 
-When an SDK, router, or animation library changes, inspect the relevant official versioned documentation and installed types; record material changes to these source pins and decisions. Recheck compatibility, native navigation/sheets, keyboard/insets, reduced motion, and build availability where affected. Do not automatically absorb new upstream prescriptions.
+When an SDK, router, animation library, or widget integration changes, inspect the relevant official versioned documentation and installed declarations; record material changes to these source pins and decisions. Recheck compatibility, native navigation/sheets, keyboard/insets, reduced motion, extension configuration, and build availability where affected. Do not automatically absorb new upstream prescriptions.
 
-Evaluate with realistic tasks that force choices: a distinctive design-only brief, an existing older-stack polish task, interrupted authentication/submission, a recycled feed with a gesture, unavailable native tooling, and a large-text adaptive layout. Judge actual outputs and changes against scope, design specificity, platform/accessibility behavior, technical compatibility, state truth, and evidence. Update only for demonstrated defects or substantive new guidance.
+Evaluate with realistic tasks that force choices: a distinctive design-only brief, an older Expo/Reanimated polish task, SwiftUI external updates with an open draft, interrupted async feedback, native and Expo widget persistence while the app is inactive, a recycled feed with a gesture, unavailable native tooling, and a large-text adaptive layout. Judge actual outputs and changes against scope, design specificity, platform/accessibility behavior, technical compatibility, state truth, and evidence. Text and fixture evaluations are not native runtime validation. Update only for demonstrated defects or substantive new guidance.

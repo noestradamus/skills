@@ -13,7 +13,7 @@ The seven skills use the open [Agent Skills format](https://agentskills.io/speci
 | Skill | Purpose |
 | --- | --- |
 | [`fowler-refactoring`](skills/fowler-refactoring/) | Refactor or systematically clean existing code through small verified transformations, evidence-backed dispositions, and proportionate guardrails. |
-| [`mobile-app-design`](skills/mobile-app-design/) | Design, implement, review, and polish Expo/React Native interfaces with distinct iOS and Android behavior, purposeful motion, and evidence-based verification. |
+| [`mobile-app-design`](skills/mobile-app-design/) | Design, implement, review, and polish SwiftUI apps, Expo/React Native interfaces, and WidgetKit widgets with native behavior, purposeful motion, and evidence-based verification. |
 | [`neuroevolution`](skills/neuroevolution/) | Experimental reference lab for neural-system and LLM-agent evolution: executable mechanisms, optional GPU support, local experiment reports and saved-candidate replay. |
 | [`paradigm-forge`](skills/paradigm-forge/) | Design ambitious, original AI project directions with concrete discovery mechanisms and human judgment. |
 | [`pushing-research-frontier`](skills/pushing-research-frontier/) | Plan, execute, and evaluate research intended to surpass the strongest current method. |
@@ -65,6 +65,8 @@ Ask for the skill by name in ordinary language, or select it through your agent'
 Use the fowler-refactoring skill to improve a module or run a systematic code-hygiene campaign without changing observable behavior.
 
 Use the mobile-app-design skill to design and implement an Expo/React Native experience for iOS and Android.
+
+Use the mobile-app-design skill to refine this SwiftUI app and its WidgetKit widgets while preserving the existing brand and architecture.
 
 Use neuroevolution to run a supported neural experiment, choose CPU or available GPU execution, replay the saved candidate, and explain the measured evidence.
 

@@ -1,6 +1,6 @@
 ---
 name: mobile-app-design
-description: Design, implement, review, and polish native mobile screens and flows in Expo/React Native for iOS and Android. Use for mobile visual direction, navigation, native interaction, motion, accessibility, and interface refinement. Not for responsive websites or backend-only work.
+description: Design, implement, review, and polish mobile apps in SwiftUI for iOS/iPadOS or Expo/React Native for iOS and Android, plus WidgetKit widgets. Use for visual direction, navigation, native interaction, motion, accessibility, and interface refinement. Not for responsive websites or backend-only work.
 ---
 
 # Mobile App Design
@@ -9,7 +9,9 @@ Make the main task clear, give the product a deliberate visual identity, preserv
 
 ## Establish the task
 
-Inspect the brief, supplied references, existing screens/components/tokens, and relevant project instructions. Before implementation, inspect the installed Expo, React Native, router, animation, and styling versions and the supported platforms. An existing interface is design evidence even without a design document.
+Inspect the brief, supplied references, existing screens/components/tokens, and relevant project instructions. Identify the framework and target being changed: SwiftUI app, Expo/React Native app, or widget extension/integration. Check the installed SDK/toolchain, dependencies, deployment targets, and project generation/configuration before selecting APIs. An existing interface is design evidence even without a design document.
+
+Preserve the project's stack and architecture unless the user requests a migration. In a mixed project, route by the code and execution target being edited; a React Native host can have a native widget extension. If no stack has been chosen, resolve that consequential choice from the brief or ask before implementation; design exploration can proceed independently.
 
 Determine whether the user wants **design**, **implementation**, **review**, or **polish**; combine them only as the request warrants. Design-only work produces a concrete proposal without modifying application code. Review reports evidence and recommendations. Polish preserves identity, information architecture, factual copy, and behavior except for the defects in scope. Redesign can replace the visual direction when requested.
 
@@ -26,11 +28,15 @@ Read the reference when its decisions arise, before making those decisions. Do n
 | iOS controls, presentation, accessibility, safe areas, adaptation | [iOS](references/ios.md) |
 | Android controls, system back, accessibility, insets, adaptation | [Android](references/android.md) |
 | Writing or changing Expo/React Native UI code | [Expo and React Native](references/expo-react-native.md) |
+| Writing or changing SwiftUI app code | [SwiftUI](references/swiftui.md) |
+| Designing, implementing, or reviewing a WidgetKit widget | [WidgetKit](references/widgetkit.md) |
 | Custom transitions, gestures, haptics, motion review | [Motion](references/motion.md) |
 | Reviewing or finishing an existing experience; validating implemented work | [Polish and verification](references/polish-and-verification.md) |
 | Maintaining this skill, checking a disputed inherited rule, updating a recipe | [Sources and decisions](references/sources-and-decisions.md) |
 
 Read the relevant platform reference before changing platform-dependent behavior. For a cross-platform flow, resolve both platforms; code sharing is not evidence that their behavior should be identical. A local visual fix can use the existing platform conventions without reopening navigation design.
+
+Load only the implementation reference for the affected stack. Widget work also reads WidgetKit: use the Expo reference for an Expo integration, and the SwiftUI reference when editing SwiftUI code. Shared motion guidance defines behavior; framework references supply APIs. Skip Android guidance for Apple-only work. Widget coverage does not imply a full ActivityKit/Live Activity workflow.
 
 ## Resolve competing guidance
 
