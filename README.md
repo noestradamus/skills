@@ -6,7 +6,7 @@ Good thing skills are installable.
 
 Reusable skills for AI-agent research workflows, engineering practices, product design, personal automation, and focused learning.
 
-The eight skills use the open [Agent Skills format](https://agentskills.io/specification): one shared package per skill, with agent-neutral instructions and optional Codex metadata. Installation is documented for Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf/Cascade, OpenCode, and Kiro. Other agents supporting this format can use the same packages through their own discovery paths. See [agent compatibility](docs/agent-compatibility.md) for paths, invocation, and runtime limits.
+The nine skills use the open [Agent Skills format](https://agentskills.io/specification): one shared package per skill, with agent-neutral instructions and optional Codex metadata. Installation is documented for Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf/Cascade, OpenCode, and Kiro. Other agents supporting this format can use the same packages through their own discovery paths. See [agent compatibility](docs/agent-compatibility.md) for paths, invocation, and runtime limits.
 
 ## Available Skills
 
@@ -16,6 +16,7 @@ The eight skills use the open [Agent Skills format](https://agentskills.io/speci
 | [`mobile-app-design`](skills/mobile-app-design/) | Design, implement, review, and polish SwiftUI apps, Expo/React Native interfaces, and WidgetKit widgets with native behavior, purposeful motion, and evidence-based verification. |
 | [`neuroevolution`](skills/neuroevolution/) | Experimental reference lab for neural-system and LLM-agent evolution: executable mechanisms, optional GPU support, local experiment reports and saved-candidate replay. |
 | [`paradigm-forge`](skills/paradigm-forge/) | Design ambitious, original AI project directions with concrete discovery mechanisms and human judgment. |
+| [`pithy`](skills/pithy/) | Structure chat replies with BLUF and Smart Brevity. Tighten sentences with Strunk & White and William Zinsser. Apply the same approach to documents on request. |
 | [`pushing-research-frontier`](skills/pushing-research-frontier/) | Plan, execute, and evaluate research intended to surpass the strongest current method. |
 | [`research-to-runnable`](skills/research-to-runnable/) | Turn a computational problem, paper, or method repository into one runnable pilot with a credible comparison, reproducible evidence, and a practical decision. |
 | [`top1percent`](skills/top1percent/) | Learn a topic or practical skill in about ten minutes through source-checked explanations, at least one illustration, examples, a short exercise, and a path toward mastery. |
@@ -46,7 +47,7 @@ With Node.js/npm available, run the open [Skills CLI](https://github.com/vercel-
 npx skills add noestradamus/skills --list
 ```
 
-Install one skill for selected agents, or all eight:
+Install one skill for selected agents, or install all nine.
 
 ```bash
 npx skills add noestradamus/skills --skill mobile-app-design --agent claude-code codex --copy
@@ -72,6 +73,8 @@ Use the mobile-app-design skill to refine this SwiftUI app and its WidgetKit wid
 Use neuroevolution to run a supported neural experiment, choose CPU or available GPU execution, replay the saved candidate, and explain the measured evidence.
 
 Use the paradigm-forge skill to design an original AI project direction with a concrete discovery loop.
+
+Use pithy to tighten this article. Keep my opening scene and voice.
 
 Use the pushing-research-frontier skill to design a research plan for surpassing the strongest current baseline.
 
